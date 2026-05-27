@@ -1939,3 +1939,97 @@ footer {
   /* Promo badge */
   .promo-badge-tag { font-size: 7px; padding: 2px 5px; }
 }
+
+/* ─────────────────────────────────────────
+   ACCOMMODATION — CHECK AVAILABILITY CTA
+───────────────────────────────────────── */
+.avail-cta {
+  background: var(--black);
+  padding: var(--space-xl) max(4%, env(safe-area-inset-left));
+  text-align: center;
+}
+.avail-inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.avail-eyebrow {
+  font-size: clamp(9px, 2vw, 11px);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: clamp(8px,1.5vw,12px);
+}
+.avail-cta h2 {
+  font-family: 'Playfair Display';
+  color: #fff;
+  font-size: clamp(22px, 5vw, 44px);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: clamp(12px, 2vw, 18px);
+}
+.avail-cta p {
+  color: rgba(255,255,255,0.45);
+  font-size: clamp(13px, 2vw, 15px);
+  line-height: 1.85;
+  margin-bottom: clamp(24px, 4vw, 40px);
+  font-weight: 300;
+}
+.avail-btns {
+  display: flex;
+  gap: clamp(10px, 2vw, 16px);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: clamp(16px, 2.5vw, 24px);
+}
+.avail-btn-wa,
+.avail-btn-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: clamp(12px, 2.5vw, 15px) clamp(20px, 4vw, 36px);
+  border-radius: 3px;
+  font-family: 'DM Sans';
+  font-size: clamp(10px, 2vw, 12px);
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: .25s;
+  min-height: 50px;
+}
+.avail-btn-wa svg,
+.avail-btn-email svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+.avail-btn-wa {
+  background: #25D366;
+  color: #fff;
+  border: none;
+}
+.avail-btn-wa svg { fill: #fff; }
+.avail-btn-wa:hover { background: #1ebe59; transform: translateY(-2px); }
+
+.avail-btn-email {
+  background: transparent;
+  color: rgba(255,255,255,0.85);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+.avail-btn-email svg { stroke: rgba(255,255,255,0.85); }
+.avail-btn-email:hover {
+  border-color: rgba(255,255,255,0.7);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.avail-note {
+  font-size: clamp(10px, 2vw, 12px);
+  color: rgba(255,255,255,0.22);
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 480px) {
+  .avail-btns { flex-direction: column; align-items: center; }
+  .avail-btn-wa, .avail-btn-email { width: 100%; max-width: 300px; justify-content: center; }
+}
