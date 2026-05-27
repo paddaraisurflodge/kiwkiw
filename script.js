@@ -16,6 +16,41 @@ function injectFooters() {
 }
 injectFooters();
 
+// Availability CTA buttons — auto-fill pesan
+(function() {
+  var waMsg =
+    'Halo Paddarai Surf Lodge!%0A' +
+    'Saya ingin menanyakan ketersediaan kamar.%0A%0A' +
+    'Nama saya: %0A' +
+    'Tanggal check-in (Jumat): %0A' +
+    'Tanggal check-out (Jumat): %0A' +
+    'Jumlah tamu: %0A%0A' +
+    'Mohon konfirmasinya, terima kasih!';
+
+  var waBtn = document.getElementById('avail-wa-btn');
+  if (waBtn) {
+    waBtn.href = 'https://wa.me/6281374192584?text=' + waMsg;
+    waBtn.target = '_blank';
+  }
+
+  var emailSubject = encodeURIComponent('Room Availability Inquiry — Paddarai Surf Lodge');
+  var emailBody = encodeURIComponent(
+    'Hi Paddarai Surf Lodge,\n\n' +
+    'I would like to check room availability.\n\n' +
+    'Name       : \n' +
+    'Check-in   : (Friday)\n' +
+    'Check-out  : (Friday)\n' +
+    'Guests     : \n\n' +
+    'Please let me know the availability and rates.\n\n' +
+    'Thank you!'
+  );
+
+  var emailBtn = document.getElementById('avail-email-btn');
+  if (emailBtn) {
+    emailBtn.href = 'mailto:paddaraisurflodge@gmail.com?subject=' + emailSubject + '&body=' + emailBody;
+  }
+})();
+
 /* ─────────────────────────────────────────
    PAGE ROUTING
 ───────────────────────────────────────── */
