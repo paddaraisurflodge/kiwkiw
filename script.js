@@ -6,7 +6,7 @@ function injectFooters() {
   const tpl = document.getElementById('footer-tpl');
   if (!tpl) return;
   const pages = [
-    'home', 'about', 'accommodation', 'bar',
+    'home', 'about', 'bar',
     'surf', 'gallery', 'promo', 'contact', 'location', 'booking'
   ];
   pages.forEach(id => {
