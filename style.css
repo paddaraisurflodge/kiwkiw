@@ -1828,13 +1828,6 @@ footer {
   .mob-menu { top: 40px; max-height: calc(100dvh - 40px); }
 }
 
-/* Landscape on small devices */
-@media (max-width: 768px) and (orientation: landscape) {
-  #page-home .hero { height: 100svh; min-height: 240px; }
-  .page-hero { height: clamp(140px,50vh,260px); }
-  .mob-menu { max-height: calc(100dvh - 48px); overflow-y: auto; }
-}
-
 /* Touch / no-hover devices */
 @media (hover: none) and (pointer: coarse) {
   .btn-primary:hover, .btn-outline:hover, .btn-book:hover, .btn-promo:hover,
@@ -1993,6 +1986,45 @@ footer {
 
   /* Promo badge */
   .promo-badge-tag { font-size: 7px; padding: 2px 5px; }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  nav { height: 48px; }
+  .page-content { padding-top: 48px; }
+  .mob-menu { top: 48px; max-height: calc(100dvh - 48px); }
+  #page-home .hero { min-height: 280px; }
+  .page-hero { height: clamp(180px, 55vh, 280px); min-height: 180px; }
+  .hero-tagline { font-size: clamp(20px, 5vh, 40px); }
+  .hero-logo-img { width: clamp(50px, 12vh, 90px); }
+  .scroll-hint { display: none; }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+  .room-card { grid-template-columns: 45% 55%; }
+  .ws-item { grid-template-columns: 50% 50%; }
+  .room-img-wrap, .room-slider { min-height: clamp(220px, 38vw, 380px); }
+  .ws-img-col { min-height: clamp(200px, 35vw, 340px); }
+  .booking-grid { grid-template-columns: 1fr 280px; }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .booking-grid { grid-template-columns: 1fr 220px; max-width: 100%; }
+  .booking-summary { position: sticky; top: 52px; }
+  .gallery-masonry { columns: 3; }
+  .transport-grid { grid-template-columns: repeat(2, 1fr); }
+  .ft-top { grid-template-columns: 1fr 1fr; }
+  .ft-brand { grid-column: 1 / -1; }
+  .about-strip { grid-template-columns: 1fr 1fr; }
+  .bar-content { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 600px) and (orientation: portrait) {
+  .transport-grid { grid-template-columns: 1fr; }
+  .gallery-masonry { columns: 2; }
+}
+
+@media (max-width: 480px) and (orientation: portrait) {
+  .gallery-masonry { columns: 1; }
 }
 
 .about-sub-title {
