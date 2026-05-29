@@ -6,7 +6,7 @@ function injectFooters() {
   const tpl = document.getElementById('footer-tpl');
   if (!tpl) return;
   const pages = [
-    'home', 'about', 'bar',
+    'home', 'about', 'accommodation', 'bar',
     'surf', 'gallery', 'promo', 'contact', 'location', 'booking'
   ];
   pages.forEach(id => {
@@ -15,41 +15,6 @@ function injectFooters() {
   });
 }
 injectFooters();
-
-// Availability CTA buttons — auto-fill pesan
-(function() {
-  var waMsg =
-    'Halo Paddarai Surf Lodge!%0A' +
-    'Saya ingin menanyakan ketersediaan kamar.%0A%0A' +
-    'Nama saya: %0A' +
-    'Tanggal check-in (Jumat): %0A' +
-    'Tanggal check-out (Jumat): %0A' +
-    'Jumlah tamu: %0A%0A' +
-    'Mohon konfirmasinya, terima kasih!';
-
-  var waBtn = document.getElementById('avail-wa-btn');
-  if (waBtn) {
-    waBtn.href = 'https://wa.me/6281374192584?text=' + waMsg;
-    waBtn.target = '_blank';
-  }
-
-  var emailSubject = encodeURIComponent('Room Availability Inquiry — Paddarai Surf Lodge');
-  var emailBody = encodeURIComponent(
-    'Hi Paddarai Surf Lodge,\n\n' +
-    'I would like to check room availability.\n\n' +
-    'Name       : \n' +
-    'Check-in   : (Friday)\n' +
-    'Check-out  : (Friday)\n' +
-    'Guests     : \n\n' +
-    'Please let me know the availability and rates.\n\n' +
-    'Thank you!'
-  );
-
-  var emailBtn = document.getElementById('avail-email-btn');
-  if (emailBtn) {
-    emailBtn.href = 'mailto:paddaraisurflodge@gmail.com?subject=' + emailSubject + '&body=' + emailBody;
-  }
-})();
 
 /* ─────────────────────────────────────────
    PAGE ROUTING
@@ -426,7 +391,7 @@ const PROMO_MIN_NIGHTS = 7;
 const PROMO_MAX_NIGHTS = 7;
 
 // Booking state
-let bkRoomUSD   = 95;
+let bkRoomUSD   = 150;
 let bkRoomName  = 'Room 1';
 let bkDiscount  = 0;
 let bkPromoName = 'No Promo';
@@ -778,17 +743,17 @@ function adminAddSample() {
     {
       name: 'Alex Torres', email: 'alex@surf.com', room: 'Room 2',
       guests: 2, checkIn: '2026-06-06', checkOut: '2026-06-13', nights: 7,
-      totalUSD: 420, promo: '7 Nights Surf Package', notes: 'Intermediate surfer', status: 'confirmed',
+      totalUSD: 1820, promo: '7 Nights Surf Package', notes: 'Intermediate surfer', status: 'confirmed',
     },
     {
       name: 'Yuki Tanaka', email: 'yuki@gmail.com', room: 'Room 1',
       guests: 3, checkIn: '2026-05-16', checkOut: '2026-05-23', nights: 7,
-      totalUSD: 1050, promo: 'No Promo', notes: '', status: 'new',
+      totalUSD: 3150, promo: 'No Promo', notes: '', status: 'new',
     },
     {
       name: 'Sarah & Mark', email: 'sarah@email.com', room: 'Room 2',
       guests: 2, checkIn: '2026-07-11', checkOut: '2026-07-18', nights: 7,
-      totalUSD: 420, promo: '7 Nights Surf Package', notes: 'Honeymoon trip', status: 'new',
+      totalUSD: 1820, promo: '7 Nights Surf Package', notes: 'Honeymoon trip', status: 'new',
     },
   ];
   const s = samples[Math.floor(Math.random() * samples.length)];
