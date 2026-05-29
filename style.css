@@ -124,7 +124,7 @@ nav {
   white-space: nowrap;
 }
 .nav-btn:hover,
-.nav-btn.active { color: #fff; background: rgba(255,255,255,0.12); }
+.nav-btn.active { color: #fff; background: rgba(255,255,255,0.12); border-radius: 20px; }
 .nav-btn svg {
   width: 10px; height: 10px;
   transition: .2s;
@@ -417,7 +417,7 @@ nav {
   background: #fff;
   color: var(--black);
   padding: clamp(10px,2.5vw,14px) clamp(16px,4vw,32px);
-  border-radius: 3px;
+  border-radius: 20px;
   font-weight: 600;
   font-size: clamp(9px, 2.2vw, 11px);
   letter-spacing: 2px;
@@ -437,7 +437,7 @@ nav {
   background: transparent;
   color: #fff;
   padding: clamp(10px,2.5vw,14px) clamp(16px,4vw,32px);
-  border-radius: 3px;
+  border-radius: 20px;
   font-weight: 500;
   font-size: clamp(9px, 2.2vw, 11px);
   letter-spacing: 2px;
@@ -451,7 +451,7 @@ nav {
   justify-content: center;
   min-height: 44px;
 }
-.btn-outline:hover { border-color: #fff; background: rgba(255,255,255,.12); }
+.btn-outline:hover { border-color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.22); }
 
 .btn-book {
   background: var(--black);
@@ -466,7 +466,7 @@ nav {
   font-weight: 500;
   transition: .2s;
   align-self: flex-start;
-  border-radius: 2px;
+  border-radius: 20px;
   min-height: 44px;
   display: inline-flex;
   align-items: center;
@@ -486,12 +486,54 @@ nav {
   text-transform: uppercase;
   font-weight: 600;
   transition: .2s;
-  border-radius: 2px;
+  border-radius: 20px;
   min-height: 44px;
   display: inline-flex;
   align-items: center;
+  align-self: flex-start;
 }
 .btn-promo:hover { background: #333; }
+
+.hero-early-bird {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.30);
+  color: #fff;
+  font-size: clamp(10px, 2vw, 12px);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: clamp(16px, 3vw, 28px);
+  margin-bottom: clamp(12px, 2vw, 18px);
+  opacity: 0;
+  animation: fadeUp .9s ease .5s forwards;
+  transition: background .2s, border-color .2s;
+}
+.hero-early-bird:hover {
+  background: rgba(255,255,255,0.22);
+  border-color: rgba(255,255,255,0.55);
+}
+.heb-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  flex-shrink: 0;
+  box-shadow: 0 0 6px #4ade80;
+  animation: pulse 2s ease infinite;
+}
+.heb-arrow {
+  font-size: 13px;
+  opacity: 0.7;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(0.85); }
+}
 
 /* ─────────────────────────────────────────
    HOME — ABOUT STRIP
@@ -701,7 +743,7 @@ nav {
   text-align: center;
   padding: clamp(8px,2vw,12px) clamp(10px,2vw,16px);
   background: var(--light-gray);
-  border-radius: 2px;
+  border-radius: 20px;
   min-width: 60px;
 }
 .room-spec .sv { font-family: 'Playfair Display'; font-size: clamp(16px,3vw,20px); color: var(--black); }
@@ -940,6 +982,10 @@ nav {
   padding: clamp(10px,2vw,14px) clamp(12px,2.5vw,18px);
   margin-bottom: clamp(12px,2vw,18px);
   border: 1px solid var(--mid-gray);
+  border-radius: 20px;
+  display: inline-block;
+   flex-direction: column;
+  align-self: flex-start;
 }
 .promo-price-tag .save { font-size: clamp(9px,2vw,10px); letter-spacing: 1px; color: var(--text-muted); margin-bottom: 3px; text-transform: uppercase; }
 .promo-price-tag .disc { font-family: 'Playfair Display'; color: var(--black); font-size: clamp(20px,3vw,26px); }
@@ -985,7 +1031,7 @@ nav {
   padding: 16px;
   background: var(--light-gray);
   border: 1px solid var(--mid-gray);
-  border-radius: 2px;
+  border-radius: 20px;
 }
 .contact-location-note p  { font-size: clamp(11px,2.5vw,13px); color: var(--text-muted); line-height: 1.8; margin: 0; }
 .contact-location-note button {
@@ -1123,7 +1169,7 @@ nav {
   width: 100%;
   padding: clamp(10px,2vw,12px) clamp(10px,2vw,14px);
   border: 1.5px solid var(--mid-gray);
-  border-radius: 2px;
+  border-radius: 20px;
   font-family: 'DM Sans';
   font-size: max(16px, clamp(13px,2.5vw,14px));
   color: var(--text-dark);
@@ -1146,7 +1192,7 @@ nav {
 .room-option,
 .promo-option {
   border: 1.5px solid var(--mid-gray);
-  border-radius: 2px;
+  border-radius: 20px;
   padding: clamp(10px,2vw,12px) clamp(10px,2vw,14px);
   cursor: pointer;
   transition: .2s;
@@ -1217,7 +1263,7 @@ nav {
   display: flex;
   align-items: center;
   border: 1.5px solid var(--mid-gray);
-  border-radius: 2px;
+  border-radius: 20px;
   overflow: hidden;
   background: #fff;
   transition: .2s;
@@ -1247,7 +1293,7 @@ nav {
 .booking-summary {
   background: var(--black);
   color: #fff;
-  border-radius: 2px;
+  border-radius: 20px;
   padding: clamp(18px,3vw,36px);
   position: sticky;
   top: clamp(60px,9vw,84px);
@@ -1273,7 +1319,7 @@ nav {
   letter-spacing: 1.5px;
   text-transform: uppercase;
   transition: .2s;
-  border-radius: 2px;
+  border-radius: 20px;
   margin-top: 6px;
   min-height: 48px;
 }
@@ -1309,7 +1355,7 @@ nav {
   width: 100%;
   padding: clamp(10px,2vw,12px) clamp(10px,2vw,14px);
   border: 1.5px solid var(--mid-gray);
-  border-radius: 2px;
+  border-radius: 20px;
   font-family: 'DM Sans';
   font-size: max(16px, clamp(13px,2.5vw,14px));
   color: var(--text-dark);
@@ -1335,7 +1381,7 @@ nav {
   z-index: 300;
   background: #fff;
   border: 1.5px solid var(--black);
-  border-radius: 4px;
+  border-radius: 20px;
   box-shadow: 0 12px 48px rgba(0,0,0,.18);
   padding: clamp(14px,3vw,20px);
   min-width: min(260px, calc(100vw - 24px));
