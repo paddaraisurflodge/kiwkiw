@@ -392,7 +392,7 @@ const PROMO_MAX_NIGHTS = 7;
 
 // Booking state
 let bkRoomUSD   = 150;
-let bkRoomName  = 'Room 1';
+let bkRoomName  = 'Cottage 1';
 let bkDiscount  = 0;
 let bkPromoName = 'No Promo';
 let bkMinGuests = 1;
@@ -555,7 +555,7 @@ function bkSendWA() {
     `Booking Paddarai Surf Lodge%0A` +
     `Name: ${encodeURIComponent(nama)}%0A` +
     `Email: ${encodeURIComponent(email)}%0A` +
-    `Room: ${encodeURIComponent(bkRoomName)}%0A` +
+    `Cottage: ${encodeURIComponent(bkRoomName)}%0A` +
     `Guests: ${bkGuests}%0A` +
     `Promo: ${encodeURIComponent(bkPromoName)}%0A` +
     `Check In: ${inVal}%0A` +
@@ -614,7 +614,7 @@ function bkSendEmail() {
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Name       : ${nama}
 Email      : ${email}
-Room       : ${bkRoomName}
+Cottage    : ${bkRoomName}
 Guests     : ${bkGuests} Guest(s)
 Promo      : ${bkPromoName}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -741,17 +741,17 @@ function adminDelete(id) {
 function adminAddSample() {
   const samples = [
     {
-      name: 'Alex Torres', email: 'alex@surf.com', room: 'Room 2',
+      name: 'Alex Torres', email: 'alex@surf.com', room: 'Cottage 2',
       guests: 2, checkIn: '2026-06-06', checkOut: '2026-06-13', nights: 7,
       totalUSD: 1820, promo: '7 Nights Surf Package', notes: 'Intermediate surfer', status: 'confirmed',
     },
     {
-      name: 'Yuki Tanaka', email: 'yuki@gmail.com', room: 'Room 1',
+      name: 'Yuki Tanaka', email: 'yuki@gmail.com', room: 'Cottage 1',
       guests: 3, checkIn: '2026-05-16', checkOut: '2026-05-23', nights: 7,
       totalUSD: 3150, promo: 'No Promo', notes: '', status: 'new',
     },
     {
-      name: 'Sarah & Mark', email: 'sarah@email.com', room: 'Room 2',
+      name: 'Sarah & Mark', email: 'sarah@email.com', room: 'Cottage 2',
       guests: 2, checkIn: '2026-07-11', checkOut: '2026-07-18', nights: 7,
       totalUSD: 1820, promo: '7 Nights Surf Package', notes: 'Honeymoon trip', status: 'new',
     },
@@ -764,7 +764,7 @@ function adminAddSample() {
 
 function adminExport() {
   if (!adminBookings.length) { alert('No bookings to export.'); return; }
-  const headers = ['ID','Name','Email','Room','Guests','Check In','Check Out','Nights','Total USD','Promo','Status','Notes','Created'];
+  const headers = ['ID','Name','Email','Cottage','Guests','Check In','Check Out','Nights','Total USD','Promo','Status','Notes','Created'];
   const rows    = adminBookings.map(b => [
     b.id, b.name, b.email, b.room, b.guests,
     b.checkIn, b.checkOut, b.nights, b.totalUSD,
@@ -796,8 +796,8 @@ function adminRender() {
   document.getElementById('stat-nights').textContent    = adminBookings.reduce((s, b) => s + (b.nights || 0), 0);
 
   // Room popularity bars
-  const r1   = adminBookings.filter(b => b.room && b.room.includes('Room 1')).length;
-  const r2   = adminBookings.filter(b => b.room && b.room.includes('Room 2')).length;
+  const r1   = adminBookings.filter(b => b.room && b.room.includes('Cottage 1')).length;
+  const r2   = adminBookings.filter(b => b.room && b.room.includes('Cottage 2')).length;
   const maxR = Math.max(r1, r2, 1);
   const setBar = (id, count) => {
     const el = document.getElementById(id);
