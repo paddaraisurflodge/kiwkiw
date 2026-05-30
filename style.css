@@ -514,6 +514,8 @@ nav {
   transition: background .2s, border-color .2s;
   white-space: nowrap;
   max-width: 90vw;
+  overflow: hidden;
+  font-size: clamp(7px, 2.8vw, 12px);
 }
 .hero-early-bird:hover {
   background: rgba(255,255,255,0.22);
