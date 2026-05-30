@@ -512,6 +512,8 @@ nav {
   opacity: 0;
   animation: fadeUp .9s ease .5s forwards;
   transition: background .2s, border-color .2s;
+  white-space: nowrap;
+  max-width: 90vw;
 }
 .hero-early-bird:hover {
   background: rgba(255,255,255,0.22);
