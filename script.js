@@ -914,9 +914,15 @@ const scrollObserver = new IntersectionObserver((entries) => {
       scrollObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.12 });
+}, { threshold: 0, rootMargin: '0px 0px -10px 0px' });
 
 function initScrollAnims() {
+  if (window.innerWidth <= 200) {
+    document.querySelectorAll('.scroll-anim').forEach(el => {
+      el.classList.add('visible');
+    });
+    return;
+  }
   document.querySelectorAll('.scroll-anim').forEach(el => {
     scrollObserver.observe(el);
   });
