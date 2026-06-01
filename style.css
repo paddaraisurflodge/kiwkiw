@@ -1988,20 +1988,6 @@ footer {
   .promo-badge-tag { font-size: 7px; padding: 2px 5px; }
 }
 
-.hero-early-bird {
-  font-size: 7px;
-  letter-spacing: 0.3px;
-  padding: 5px 8px;
-  gap: 4px;
-  margin-top: 8px;
-  margin-bottom: 6px;
-  white-space: normal;
-  text-align: center;
-  max-width: 100%;
-}
-.heb-dot  { width: 5px; height: 5px; flex-shrink: 0; }
-.heb-arrow { font-size: 9px; }
-
 @media (max-width: 180px) {
   .scroll-anim {
     opacity: 1 !important;
@@ -2072,3 +2058,4 @@ footer {
 .about-sub-desc {
   padding-left: 16px;
 }
+
