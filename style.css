@@ -854,6 +854,15 @@ nav {
   border-radius: 4px;
   object-fit: contain;
 }
+.location-map-img-wrap {
+  padding: var(--space-lg) max(4%, env(safe-area-inset-left));
+  background: #fff;
+  border-top: 1px solid var(--mid-gray);
+}
+.location-map-img-wrap .ws-map-img {
+  margin-top: 0;
+  margin-bottom: 0;
+}
 .ws-list { display: flex; flex-direction: column; gap: clamp(24px,4vw,40px); }
 .ws-item { display: grid; grid-template-columns: 1.1fr 1fr; border: 1px solid var(--mid-gray); overflow: hidden; background: #fff; }
 .ws-img-col { position: relative; min-height: clamp(180px,30vw,400px); overflow: hidden; }
@@ -1817,7 +1826,7 @@ footer {
 }
 
 /* Extremely narrow */
-@media (max-width: 200px) {
+@media (min-width: 181px) and (max-width: 200px) {
   nav { height: 40px; padding: 0 8px; gap: 4px; }
   .logo-wrap img { width: 18px; }
   .logo-name { display: none; }
