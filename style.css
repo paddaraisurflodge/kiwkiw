@@ -1988,24 +1988,6 @@ footer {
   .promo-badge-tag { font-size: 7px; padding: 2px 5px; }
 }
 
-@media (max-width: 180px) {
-  .scroll-anim {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-
-  .hero-logo-img,
-  .hero-tagline,
-  .hero-sub,
-  .hero-early-bird,
-  .hero-cta-wrap {
-    opacity: 1 !important;
-    animation: none !important;
-    transform: none !important;
-  }
-}
-
 @media (orientation: landscape) and (max-height: 500px) {
   nav { height: 48px; }
   .page-content { padding-top: 48px; }
@@ -2058,4 +2040,3 @@ footer {
 .about-sub-desc {
   padding-left: 16px;
 }
-
