@@ -2058,3 +2058,68 @@ footer {
 .about-sub-desc {
   padding-left: 16px;
 }
+
+/* ─────────────────────────────────────────
+   APPLE WATCH & ULTRA SMALL (<180px) — HERO FIX
+───────────────────────────────────────── */
+@media (max-width: 180px) {
+  /* Sembunyikan elemen hero yang tidak perlu */
+  .hero-logo-img     { display: none; }
+  .hero-early-bird   { display: none; }
+  .scroll-hint       { display: none; }
+
+  /* Hero lebih compact */
+  #page-home .hero {
+    padding: 0 8px;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  /* Tagline lebih kecil */
+  .hero-tagline {
+    font-size: 14px !important;
+    letter-spacing: 0px;
+    margin-top: 0;
+  }
+
+  /* Sub lebih kecil */
+  .hero-sub {
+    font-size: 7px !important;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  /* Tombol vertikal, full width */
+  .hero-cta-wrap {
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    margin-top: 8px;
+  }
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    max-width: 100%;
+    padding: 8px 10px;
+    font-size: 8px !important;
+    letter-spacing: 1px;
+    border-radius: 20px;
+    min-height: 32px;
+  }
+
+  /* About strip: single column, teks kecil */
+  .about-strip {
+    grid-template-columns: 1fr;
+    padding: 16px 8px;
+    gap: 12px;
+  }
+  .about-strip h2 {
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  .about-strip p {
+    font-size: 9px;
+    line-height: 1.6;
+  }
+  .about-img-grid { display: none; }
+}
