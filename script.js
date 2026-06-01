@@ -261,6 +261,10 @@ function renderCal(which) {
     const isFri  = dow === 5;
     const isPast = date < today;
 
+    const openingDate = new Date(2027, 3, 9);
+    openingDate.setHours(0, 0, 0, 0);
+    const isBeforeOpening = date < openingDate;
+
     let isBeforeMinOut = false;
     if (which === 'out' && selectedIn) {
       const minOut = new Date(parseYMD(selectedIn).getTime() + 7 * 86400000);
@@ -271,7 +275,7 @@ function renderCal(which) {
     const el = document.createElement('div');
     let cls = 'cal-day';
     if (!isFri)                                     cls += ' not-fri';
-    else if (isPast || (which === 'out' && isBeforeMinOut)) cls += ' past';
+    else if (isPast || isBeforeOpening || (which === 'out' && isBeforeMinOut)) cls += ' past';
     else                                            cls += ' friday-avail';
 
     if (which === 'in'  && ymd === selectedIn)  cls += ' selected';
@@ -386,18 +390,18 @@ const BK_SYM = {
   MYR: 'RM', THB: '฿',
 };
 const BK_NO_DEC      = ['IDR', 'JPY']; // currencies without decimal places
-const PROMO_DEADLINE  = '2027-04-30';
+const PROMO_DEADLINE  = '2027-04-16';
 const PROMO_MIN_NIGHTS = 7;
 const PROMO_MAX_NIGHTS = 7;
 
 // Booking state
-let bkRoomUSD   = 150;
+let bkRoomUSD   = 125;
 let bkRoomName  = 'Cottage 1';
 let bkDiscount  = 0;
 let bkPromoName = 'No Promo';
-let bkMinGuests = 1;
+let bkMinGuests = 3;
 let bkMaxGuests = 4;
-let bkGuests    = 1;
+let bkGuests    = 3;
 
 /* -- Guest counter -- */
 function updateGuestUI() {
@@ -438,11 +442,11 @@ function bkCheckPromoEligibility() {
     const checkoutValid = outVal <= PROMO_DEADLINE;
 
     if (nights !== 7 && !checkoutValid) {
-  reason = 'Promo requires exactly 7 nights & check-out before 30 April 2027.';
+  reason = 'Promo requires exactly 7 nights & check-out before 16 April 2027.';
 } else if (nights !== 7) {
   reason = 'Promo requires exactly 7 nights.';
 } else if (!checkoutValid) {
-  reason = 'Promo valid for check-out before 30 April 2027.';
+  reason = 'Promo valid for check-out before 16 April 2027.';
 } else {
   eligible = true;
 }
