@@ -1076,8 +1076,8 @@ nav {
 }
 .transport-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,.10); transform: translateY(-3px); }
 
-.transport-img { position: relative; width: 100%; height: clamp(120px,22vw,280px); overflow: hidden; background: var(--light-gray); }
-.transport-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; display: block; }
+.transport-img { position: relative; width: 100%; height: clamp(120px,56vw,320px); overflow: hidden; background: var(--light-gray); }
+.transport-img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; transition: transform .6s ease; display: block; }
 .transport-card:hover .transport-img img { transform: scale(1.05); }
 .transport-img-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--light-gray); gap: 12px; }
 .transport-img-placeholder svg { width: clamp(24px,5vw,36px); height: clamp(24px,5vw,36px); stroke: var(--mid-gray); }
