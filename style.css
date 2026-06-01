@@ -1826,6 +1826,11 @@ footer {
   .nav-book-btn { display: none; }
   .page-content { padding-top: 40px; }
   .mob-menu { top: 40px; max-height: calc(100dvh - 40px); }
+  .scroll-anim {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 /* Touch / no-hover devices */
@@ -1860,6 +1865,10 @@ footer {
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
+  }
+   .scroll-anim {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
