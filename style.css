@@ -2063,63 +2063,44 @@ footer {
    APPLE WATCH & ULTRA SMALL (<180px) — HERO FIX
 ───────────────────────────────────────── */
 @media (max-width: 180px) {
-  /* Sembunyikan elemen hero yang tidak perlu */
-  .hero-logo-img     { display: none; }
-  .hero-early-bird   { display: none; }
-  .scroll-hint       { display: none; }
+  /* Hero fix only */
+  .hero-logo-img   { display: none; }
+  .hero-early-bird { display: none; }
+  .scroll-hint     { display: none; }
 
-  /* Hero lebih compact */
-  #page-home .hero {
-    padding: 0 8px;
-    justify-content: center;
-    gap: 6px;
-  }
-
-  /* Tagline lebih kecil */
   .hero-tagline {
-    font-size: 14px !important;
-    letter-spacing: 0px;
+    font-size: 13px !important;
     margin-top: 0;
+    letter-spacing: 0;
   }
-
-  /* Sub lebih kecil */
   .hero-sub {
     font-size: 7px !important;
     letter-spacing: 1px;
     margin-top: 4px;
   }
 
-  /* Tombol vertikal, full width */
   .hero-cta-wrap {
     flex-direction: column;
-    gap: 5px;
     width: 100%;
+    gap: 5px;
     margin-top: 8px;
   }
   .btn-primary,
   .btn-outline {
     width: 100%;
     max-width: 100%;
-    padding: 8px 10px;
+    padding: 7px 10px;
     font-size: 8px !important;
     letter-spacing: 1px;
-    border-radius: 20px;
-    min-height: 32px;
+    min-height: 30px;
   }
 
-  /* About strip: single column, teks kecil */
+  /* About strip — jangan sentuh gambar */
   .about-strip {
     grid-template-columns: 1fr;
-    padding: 16px 8px;
-    gap: 12px;
+    padding: 12px 8px;
+    gap: 10px;
   }
-  .about-strip h2 {
-    font-size: 12px;
-    margin-bottom: 6px;
-  }
-  .about-strip p {
-    font-size: 9px;
-    line-height: 1.6;
-  }
-  .about-img-grid { display: none; }
+  .about-strip h2 { font-size: 12px; margin-bottom: 4px; }
+  .about-strip p  { font-size: 9px; line-height: 1.6; }
 }
