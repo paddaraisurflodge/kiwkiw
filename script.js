@@ -25,6 +25,16 @@ function showPage(id) {
   if (el) {
     el.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'instant' });
+    // Re-observe scroll animations untuk halaman yang baru aktif
+    if (window.innerWidth > 200) {
+      el.querySelectorAll('.scroll-anim:not(.visible)').forEach(anim => {
+        scrollObserver.observe(anim);
+      });
+    } else {
+      el.querySelectorAll('.scroll-anim').forEach(anim => {
+        anim.classList.add('visible');
+      });
+    }
   }
   closeAllDropdowns();
   updateNavActive(id);
