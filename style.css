@@ -2075,6 +2075,120 @@ footer {
     transform: none !important;
     transition: none !important;
   }
+   .booking-wrap {
+    padding: 6px 4px !important;
+  }
+  .booking-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+  .booking-left {
+    padding: 0;
+  }
+  .booking-left h2 {
+    font-size: 11px !important;
+    margin-bottom: 4px;
+  }
+  .booking-left .sub {
+    font-size: 8px !important;
+    margin-bottom: 8px;
+  }
+  .bk-field {
+    margin-bottom: 8px !important;
+  }
+  .bk-field label {
+    font-size: 7px !important;
+    letter-spacing: 0.3px;
+    margin-bottom: 3px;
+  }
+  .bk-field input,
+  .bk-field select,
+  .bk-field textarea {
+    font-size: 9px !important;
+    padding: 5px 7px !important;
+    min-height: 28px !important;
+    border-radius: 6px !important;
+  }
+  .bk-row-2,
+  .bk-date-row {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+  .room-options,
+  .promo-options {
+    gap: 4px !important;
+  }
+  .room-option,
+  .promo-option {
+    padding: 5px 6px !important;
+    min-height: 30px !important;
+    border-radius: 6px !important;
+    gap: 5px !important;
+  }
+  .opt-dot {
+    width: 10px !important;
+    height: 10px !important;
+    flex-shrink: 0;
+  }
+  .opt-name { font-size: 8px !important; }
+  .opt-sub  { font-size: 7px !important; }
+  .room-price { font-size: 8px !important; }
+  .view-room-link { display: none !important; }
+  .promo-badge-tag {
+    font-size: 6px !important;
+    padding: 2px 4px !important;
+  }
+  .guest-counter {
+    border-radius: 6px !important;
+  }
+  .guest-btn {
+    width: 26px !important;
+    height: 28px !important;
+    font-size: 14px !important;
+  }
+  .guest-display { font-size: 9px !important; }
+  .guest-max-info { font-size: 7px !important; }
+  #promo-msg { font-size: 7px !important; padding: 4px 6px !important; }
+  .booking-summary {
+    position: static !important;
+    padding: 8px !important;
+    border-radius: 6px !important;
+    margin-top: 4px;
+  }
+  .sum-head { font-size: 7px !important; margin-bottom: 6px; }
+  .sum-row  { font-size: 8px !important; padding: 3px 0 !important; }
+  .sum-row.total { font-size: 9px !important; }
+  .bk-submit {
+    padding: 7px !important;
+    font-size: 7px !important;
+    min-height: 28px !important;
+    border-radius: 6px !important;
+    letter-spacing: 0.5px !important;
+  }
+  .date-display-btn {
+    font-size: 8px !important;
+    padding: 5px 7px !important;
+    min-height: 28px !important;
+    border-radius: 6px !important;
+  }
+  .cal-popup {
+    width: calc(100vw - 6px) !important;
+    padding: 6px !important;
+    left: 0 !important;
+    transform: none !important;
+    border-radius: 4px !important;
+    font-size: 8px;
+  }
+  .cal-day { font-size: 7px !important; }
+  .cal-dow { font-size: 6px !important; }
+  .cal-month-label { font-size: 9px !important; }
+  .cal-nav-btn { width: 18px !important; height: 18px !important; }
+  .cal-nav-btn svg { width: 8px !important; height: 8px !important; }
+  .cal-legend { gap: 6px !important; margin-top: 6px !important; padding-top: 6px !important; }
+  .cal-leg-item { font-size: 6px !important; }
+  .cal-leg-swatch { width: 10px !important; height: 10px !important; }
 }
 
 @media (orientation: landscape) and (max-height: 500px) {
