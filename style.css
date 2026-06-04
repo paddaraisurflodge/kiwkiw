@@ -1885,310 +1885,125 @@ footer {
    APPLE WATCH & ULTRA SMALL SCREENS (<180px)
 ───────────────────────────────────────── */
 @media (max-width: 180px) {
+  /* Nav minimal */
   nav {
     height: 36px;
     padding: 0 4px;
-    background: rgba(0,0,0,0.85);
   }
   .logo-wrap img { width: 16px; }
   .logo-name     { display: none; }
   .nav-book-btn  { display: none; }
-  
   .hamburger {
-    display: flex;
-    min-width: 32px;
-    min-height: 32px;
-    padding: 4px;
-    z-index: 300;
-    position: relative;
-    pointer-events: auto;
-    -webkit-tap-highlight-color: rgba(255,255,255,0.2);
+    min-width: 28px;
+    min-height: 28px;
+    padding: 2px;
   }
-  .hamburger svg { 
-    width: 14px; 
-    height: 14px;
-    pointer-events: none;
-  }
+  .hamburger svg { width: 14px; height: 14px; }
 
+  /* Offset konten */
   .page-content { padding-top: 36px; }
-  
   .mob-menu {
     top: 36px;
     max-height: calc(100dvh - 36px);
-    padding: 6px 8px;
-    background: rgba(0,0,0,0.95);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
   }
 
-  /* Semua button mobile menu bisa diklik */
-  .mob-direct,
-  .mob-section-btn,
-  .mob-sub-item,
-  .mob-book {
-    min-height: 36px;
-    font-size: 9px;
-    padding: 8px 4px;
-    pointer-events: auto;
-    -webkit-tap-highlight-color: rgba(255,255,255,0.15);
-    touch-action: manipulation;
-    cursor: pointer;
-  }
-  
-  .mob-book {
-    margin-top: 8px;
-    padding: 10px 8px;
-    font-size: 9px;
-    border-radius: 3px;
-  }
-
-  /* Hilangkan overlay hitam yang nutup konten */
-  .page-hero::after {
-    background: rgba(0,0,0,0.35);
-  }
-  
-  /* Hero lebih compact */
-  #page-home .hero {
-    min-height: 180px;
-    padding: 0 8px;
-  }
-  .hero-logo-img  { width: 40px; }
-  .hero-tagline   { font-size: 13px; margin-top: 6px; }
-  .hero-sub       { font-size: 7px; letter-spacing: 1px; }
-  .hero-early-bird { font-size: 7px; padding: 5px 8px; gap: 4px; }
-  .hero-cta-wrap  { gap: 5px; margin-top: 10px; }
-  .btn-primary,
-  .btn-outline    { font-size: 8px; padding: 7px 12px; min-height: 32px; }
-  .scroll-hint    { display: none; }
-
-  /* Page hero */
-  .page-hero { height: 120px; min-height: 120px; }
-  .page-hero h1 { font-size: 14px; }
-  .page-hero-eyebrow { font-size: 7px; }
-
-  /* Konten halaman */
-  .about-strip {
-    grid-template-columns: 1fr;
-    padding: 14px 8px;
-    gap: 12px;
-  }
-  .about-strip h2 { font-size: 14px; }
-  .about-strip p  { font-size: 10px; }
-
-  .section-intro { padding: 12px 8px; }
-  .section-intro h2 { font-size: 13px; }
-  .section-intro p  { font-size: 10px; }
-
-  .room-section { padding: 10px 6px; }
-  .room-card { grid-template-columns: 1fr; }
-  .room-body { padding: 10px; }
-  .room-body h3 { font-size: 13px; }
-  .room-desc    { font-size: 10px; }
-  .room-specs   { gap: 4px; }
-  .room-spec    { padding: 5px 6px; }
-  .room-spec .sv { font-size: 12px; }
-  .room-spec .sk { font-size: 7px; }
-  .fac-grid { grid-template-columns: 1fr; }
-  .fac-name   { font-size: 9px; }
-  .fac-detail { font-size: 8px; }
-  .fac-icon   { width: 18px; height: 18px; }
-  .fac-icon svg { width: 9px; height: 9px; }
-  .btn-book { font-size: 8px; padding: 7px 10px; min-height: 30px; }
-
-  /* Footer compact */
-  footer { display: block; }
-  .ft-top {
-    grid-template-columns: 1fr;
-    padding: 12px 8px;
-    gap: 10px;
-  }
-  .ft-brand-name { font-size: 9px; }
-  .ft-brand-tag  { font-size: 7px; }
-  .ft-brand-desc { font-size: 8px; }
-  .ft-col-title  { font-size: 7px; }
-  .ft-link       { font-size: 9px; }
-  .ft-contact-val   { font-size: 8px; }
-  .ft-contact-label { font-size: 7px; }
-  .ft-copy       { font-size: 8px; }
-  .ft-legal-link { font-size: 8px; }
-  .ft-bottom     { padding: 8px; flex-direction: column; gap: 4px; }
-  .ft-social-btn { font-size: 8px; padding: 5px 8px; }
-
-  /* Booking */
+  /* Booking: single column, tanpa sticky */
   .booking-grid {
     grid-template-columns: 1fr !important;
     gap: 10px;
-    padding: 8px 6px;
+    padding: 8px 4px;
   }
-  .booking-wrap { padding: 8px 6px; }
+  .booking-wrap { padding: 8px 4px; }
   .booking-summary {
     position: static !important;
+    width: 100%;
     padding: 10px 8px;
     border-radius: 2px;
   }
   .booking-left h2 { font-size: 12px; }
-  .bk-field label  { font-size: 8px; }
+  .booking-left .sub { font-size: 10px; margin-bottom: 10px; }
+
+  /* Form fields compact */
+  .bk-field { margin-bottom: 8px; }
+  .bk-field label { font-size: 8px; letter-spacing: 0.5px; margin-bottom: 4px; }
   .bk-field input,
   .bk-field select,
   .bk-field textarea {
     padding: 6px 8px;
     font-size: 10px;
-    min-height: 30px;
+    min-height: 32px;
   }
-  .bk-row-2,
+  .bk-row-2   { grid-template-columns: 1fr; gap: 0; }
   .bk-date-row { grid-template-columns: 1fr; gap: 0; }
-  .bk-submit { padding: 8px; font-size: 8px; min-height: 30px; }
-  .sum-head { font-size: 8px; }
-  .sum-row  { font-size: 9px; padding: 4px 0; }
 
-  /* Calendar */
+  /* Room & promo options */
+  .room-option,
+  .promo-option {
+    padding: 6px 8px;
+    min-height: 36px;
+    gap: 6px;
+  }
+  .opt-name { font-size: 9px; }
+  .opt-sub  { font-size: 8px; }
+  .room-price { font-size: 9px; }
+  .view-room-link { font-size: 8px; }
+
+  /* Guest counter */
+  .guest-btn     { width: 28px; height: 32px; font-size: 14px; }
+  .guest-display { font-size: 10px; }
+
+  /* Summary rows */
+  .sum-head { font-size: 8px; margin-bottom: 8px; }
+  .sum-row  { font-size: 9px; padding: 4px 0; }
+  .sum-row.total { font-size: 10px; }
+
+  /* Submit buttons */
+  .bk-submit {
+    padding: 8px;
+    font-size: 8px;
+    letter-spacing: 0.5px;
+    min-height: 32px;
+  }
+
+  /* Calendar popup */
   .cal-popup {
     width: calc(100vw - 8px);
     min-width: unset;
     padding: 8px;
     left: 0;
     transform: none;
-    border-radius: 4px;
   }
-  .cal-popup.open { transform: none; animation: none; }
+  .cal-popup.open { transform: none; }
   .cal-month-label { font-size: 10px; }
   .cal-nav-btn { width: 22px; height: 22px; }
   .cal-nav-btn svg { width: 10px; height: 10px; }
-  .cal-dow  { font-size: 7px; }
+  .cal-dow  { font-size: 7px; padding: 2px 0 4px; }
   .cal-day  { font-size: 8px; }
   .cal-grid { gap: 1px; }
+
+  /* Date button */
   .date-display-btn {
     padding: 6px 8px;
     font-size: 9px;
-    min-height: 30px;
+    min-height: 32px;
   }
 
-  /* Semua elemen interaktif pastikan bisa diklik */
-  button, a, input, select, textarea {
-    pointer-events: auto !important;
-    touch-action: manipulation;
-  }
+  /* Textarea lebih kecil */
+  .bk-field textarea { rows: 2; min-height: 40px; font-size: 9px; }
 
-  /* Scroll animasi nonaktif */
-  .scroll-anim {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-   .booking-wrap {
-    padding: 6px 4px !important;
-  }
-  .booking-grid {
-    grid-template-columns: 1fr !important;
-    gap: 8px !important;
-    padding: 0 !important;
-    max-width: 100% !important;
-  }
-  .booking-left {
-    padding: 0;
-  }
-  .booking-left h2 {
-    font-size: 11px !important;
-    margin-bottom: 4px;
-  }
-  .booking-left .sub {
-    font-size: 8px !important;
-    margin-bottom: 8px;
-  }
-  .bk-field {
-    margin-bottom: 8px !important;
-  }
-  .bk-field label {
-    font-size: 7px !important;
-    letter-spacing: 0.3px;
-    margin-bottom: 3px;
-  }
-  .bk-field input,
-  .bk-field select,
-  .bk-field textarea {
-    font-size: 9px !important;
-    padding: 5px 7px !important;
-    min-height: 28px !important;
-    border-radius: 6px !important;
-  }
-  .bk-row-2,
-  .bk-date-row {
-    grid-template-columns: 1fr !important;
-    gap: 0 !important;
-  }
-  .room-options,
-  .promo-options {
-    gap: 4px !important;
-  }
-  .room-option,
-  .promo-option {
-    padding: 5px 6px !important;
-    min-height: 30px !important;
-    border-radius: 6px !important;
-    gap: 5px !important;
-  }
-  .opt-dot {
-    width: 10px !important;
-    height: 10px !important;
-    flex-shrink: 0;
-  }
-  .opt-name { font-size: 8px !important; }
-  .opt-sub  { font-size: 7px !important; }
-  .room-price { font-size: 8px !important; }
-  .view-room-link { display: none !important; }
-  .promo-badge-tag {
-    font-size: 6px !important;
-    padding: 2px 4px !important;
-  }
-  .guest-counter {
-    border-radius: 6px !important;
-  }
-  .guest-btn {
-    width: 26px !important;
-    height: 28px !important;
-    font-size: 14px !important;
-  }
-  .guest-display { font-size: 9px !important; }
-  .guest-max-info { font-size: 7px !important; }
-  #promo-msg { font-size: 7px !important; padding: 4px 6px !important; }
-  .booking-summary {
-    position: static !important;
-    padding: 8px !important;
-    border-radius: 6px !important;
-    margin-top: 4px;
-  }
-  .sum-head { font-size: 7px !important; margin-bottom: 6px; }
-  .sum-row  { font-size: 8px !important; padding: 3px 0 !important; }
-  .sum-row.total { font-size: 9px !important; }
-  .bk-submit {
-    padding: 7px !important;
-    font-size: 7px !important;
-    min-height: 28px !important;
-    border-radius: 6px !important;
-    letter-spacing: 0.5px !important;
-  }
-  .date-display-btn {
-    font-size: 8px !important;
-    padding: 5px 7px !important;
-    min-height: 28px !important;
-    border-radius: 6px !important;
-  }
-  .cal-popup {
-    width: calc(100vw - 6px) !important;
-    padding: 6px !important;
-    left: 0 !important;
-    transform: none !important;
-    border-radius: 4px !important;
-    font-size: 8px;
-  }
-  .cal-day { font-size: 7px !important; }
-  .cal-dow { font-size: 6px !important; }
-  .cal-month-label { font-size: 9px !important; }
-  .cal-nav-btn { width: 18px !important; height: 18px !important; }
-  .cal-nav-btn svg { width: 8px !important; height: 8px !important; }
-  .cal-legend { gap: 6px !important; margin-top: 6px !important; padding-top: 6px !important; }
-  .cal-leg-item { font-size: 6px !important; }
-  .cal-leg-swatch { width: 10px !important; height: 10px !important; }
+  /* Currency select */
+  .bk-field select { font-size: 9px; padding: 5px 6px; }
+
+  /* Promo message */
+  #promo-msg { font-size: 8px; padding: 5px 7px; }
+  .guest-max-info { font-size: 8px; }
+
+  /* Opt dot smaller */
+  .opt-dot { width: 12px; height: 12px; }
+  .opt-dot::after { width: 5px !important; height: 5px !important; }
+
+  /* Promo badge */
+  .promo-badge-tag { font-size: 7px; padding: 2px 5px; }
 }
 
 @media (orientation: landscape) and (max-height: 500px) {
