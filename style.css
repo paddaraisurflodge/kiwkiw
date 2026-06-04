@@ -84,7 +84,7 @@ nav {
   min-width: 0;
 }
 .logo-wrap img {
-  width: clamp(22px, 4vw, 38px);
+  width: clamp(28px, 5vw, 44px);
   flex-shrink: 0;
 }
 .logo-name {
@@ -350,7 +350,7 @@ nav {
 #page-home .hero > *:not(.hero-bg-img) { position: relative; z-index: 2; }
 
 .hero-logo-img {
-  width: clamp(80px, 20vw, 160px);
+  width: clamp(100px, 24vw, 190px);
   opacity: 0;
   animation: fadeUp .9s ease .2s forwards;
 }
@@ -1885,125 +1885,196 @@ footer {
    APPLE WATCH & ULTRA SMALL SCREENS (<180px)
 ───────────────────────────────────────── */
 @media (max-width: 180px) {
-  /* Nav minimal */
   nav {
     height: 36px;
     padding: 0 4px;
+    background: rgba(0,0,0,0.85);
   }
   .logo-wrap img { width: 16px; }
   .logo-name     { display: none; }
   .nav-book-btn  { display: none; }
+  
   .hamburger {
-    min-width: 28px;
-    min-height: 28px;
-    padding: 2px;
+    display: flex;
+    min-width: 32px;
+    min-height: 32px;
+    padding: 4px;
+    z-index: 300;
+    position: relative;
+    pointer-events: auto;
+    -webkit-tap-highlight-color: rgba(255,255,255,0.2);
   }
-  .hamburger svg { width: 14px; height: 14px; }
+  .hamburger svg { 
+    width: 14px; 
+    height: 14px;
+    pointer-events: none;
+  }
 
-  /* Offset konten */
   .page-content { padding-top: 36px; }
+  
   .mob-menu {
     top: 36px;
     max-height: calc(100dvh - 36px);
+    padding: 6px 8px;
+    background: rgba(0,0,0,0.95);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
-  /* Booking: single column, tanpa sticky */
+  /* Semua button mobile menu bisa diklik */
+  .mob-direct,
+  .mob-section-btn,
+  .mob-sub-item,
+  .mob-book {
+    min-height: 36px;
+    font-size: 9px;
+    padding: 8px 4px;
+    pointer-events: auto;
+    -webkit-tap-highlight-color: rgba(255,255,255,0.15);
+    touch-action: manipulation;
+    cursor: pointer;
+  }
+  
+  .mob-book {
+    margin-top: 8px;
+    padding: 10px 8px;
+    font-size: 9px;
+    border-radius: 3px;
+  }
+
+  /* Hilangkan overlay hitam yang nutup konten */
+  .page-hero::after {
+    background: rgba(0,0,0,0.35);
+  }
+  
+  /* Hero lebih compact */
+  #page-home .hero {
+    min-height: 180px;
+    padding: 0 8px;
+  }
+  .hero-logo-img  { width: 40px; }
+  .hero-tagline   { font-size: 13px; margin-top: 6px; }
+  .hero-sub       { font-size: 7px; letter-spacing: 1px; }
+  .hero-early-bird { font-size: 7px; padding: 5px 8px; gap: 4px; }
+  .hero-cta-wrap  { gap: 5px; margin-top: 10px; }
+  .btn-primary,
+  .btn-outline    { font-size: 8px; padding: 7px 12px; min-height: 32px; }
+  .scroll-hint    { display: none; }
+
+  /* Page hero */
+  .page-hero { height: 120px; min-height: 120px; }
+  .page-hero h1 { font-size: 14px; }
+  .page-hero-eyebrow { font-size: 7px; }
+
+  /* Konten halaman */
+  .about-strip {
+    grid-template-columns: 1fr;
+    padding: 14px 8px;
+    gap: 12px;
+  }
+  .about-strip h2 { font-size: 14px; }
+  .about-strip p  { font-size: 10px; }
+
+  .section-intro { padding: 12px 8px; }
+  .section-intro h2 { font-size: 13px; }
+  .section-intro p  { font-size: 10px; }
+
+  .room-section { padding: 10px 6px; }
+  .room-card { grid-template-columns: 1fr; }
+  .room-body { padding: 10px; }
+  .room-body h3 { font-size: 13px; }
+  .room-desc    { font-size: 10px; }
+  .room-specs   { gap: 4px; }
+  .room-spec    { padding: 5px 6px; }
+  .room-spec .sv { font-size: 12px; }
+  .room-spec .sk { font-size: 7px; }
+  .fac-grid { grid-template-columns: 1fr; }
+  .fac-name   { font-size: 9px; }
+  .fac-detail { font-size: 8px; }
+  .fac-icon   { width: 18px; height: 18px; }
+  .fac-icon svg { width: 9px; height: 9px; }
+  .btn-book { font-size: 8px; padding: 7px 10px; min-height: 30px; }
+
+  /* Footer compact */
+  footer { display: block; }
+  .ft-top {
+    grid-template-columns: 1fr;
+    padding: 12px 8px;
+    gap: 10px;
+  }
+  .ft-brand-name { font-size: 9px; }
+  .ft-brand-tag  { font-size: 7px; }
+  .ft-brand-desc { font-size: 8px; }
+  .ft-col-title  { font-size: 7px; }
+  .ft-link       { font-size: 9px; }
+  .ft-contact-val   { font-size: 8px; }
+  .ft-contact-label { font-size: 7px; }
+  .ft-copy       { font-size: 8px; }
+  .ft-legal-link { font-size: 8px; }
+  .ft-bottom     { padding: 8px; flex-direction: column; gap: 4px; }
+  .ft-social-btn { font-size: 8px; padding: 5px 8px; }
+
+  /* Booking */
   .booking-grid {
     grid-template-columns: 1fr !important;
     gap: 10px;
-    padding: 8px 4px;
+    padding: 8px 6px;
   }
-  .booking-wrap { padding: 8px 4px; }
+  .booking-wrap { padding: 8px 6px; }
   .booking-summary {
     position: static !important;
-    width: 100%;
     padding: 10px 8px;
     border-radius: 2px;
   }
   .booking-left h2 { font-size: 12px; }
-  .booking-left .sub { font-size: 10px; margin-bottom: 10px; }
-
-  /* Form fields compact */
-  .bk-field { margin-bottom: 8px; }
-  .bk-field label { font-size: 8px; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .bk-field label  { font-size: 8px; }
   .bk-field input,
   .bk-field select,
   .bk-field textarea {
     padding: 6px 8px;
     font-size: 10px;
-    min-height: 32px;
+    min-height: 30px;
   }
-  .bk-row-2   { grid-template-columns: 1fr; gap: 0; }
+  .bk-row-2,
   .bk-date-row { grid-template-columns: 1fr; gap: 0; }
-
-  /* Room & promo options */
-  .room-option,
-  .promo-option {
-    padding: 6px 8px;
-    min-height: 36px;
-    gap: 6px;
-  }
-  .opt-name { font-size: 9px; }
-  .opt-sub  { font-size: 8px; }
-  .room-price { font-size: 9px; }
-  .view-room-link { font-size: 8px; }
-
-  /* Guest counter */
-  .guest-btn     { width: 28px; height: 32px; font-size: 14px; }
-  .guest-display { font-size: 10px; }
-
-  /* Summary rows */
-  .sum-head { font-size: 8px; margin-bottom: 8px; }
+  .bk-submit { padding: 8px; font-size: 8px; min-height: 30px; }
+  .sum-head { font-size: 8px; }
   .sum-row  { font-size: 9px; padding: 4px 0; }
-  .sum-row.total { font-size: 10px; }
 
-  /* Submit buttons */
-  .bk-submit {
-    padding: 8px;
-    font-size: 8px;
-    letter-spacing: 0.5px;
-    min-height: 32px;
-  }
-
-  /* Calendar popup */
+  /* Calendar */
   .cal-popup {
     width: calc(100vw - 8px);
     min-width: unset;
     padding: 8px;
     left: 0;
     transform: none;
+    border-radius: 4px;
   }
-  .cal-popup.open { transform: none; }
+  .cal-popup.open { transform: none; animation: none; }
   .cal-month-label { font-size: 10px; }
   .cal-nav-btn { width: 22px; height: 22px; }
   .cal-nav-btn svg { width: 10px; height: 10px; }
-  .cal-dow  { font-size: 7px; padding: 2px 0 4px; }
+  .cal-dow  { font-size: 7px; }
   .cal-day  { font-size: 8px; }
   .cal-grid { gap: 1px; }
-
-  /* Date button */
   .date-display-btn {
     padding: 6px 8px;
     font-size: 9px;
-    min-height: 32px;
+    min-height: 30px;
   }
 
-  /* Textarea lebih kecil */
-  .bk-field textarea { rows: 2; min-height: 40px; font-size: 9px; }
+  /* Semua elemen interaktif pastikan bisa diklik */
+  button, a, input, select, textarea {
+    pointer-events: auto !important;
+    touch-action: manipulation;
+  }
 
-  /* Currency select */
-  .bk-field select { font-size: 9px; padding: 5px 6px; }
-
-  /* Promo message */
-  #promo-msg { font-size: 8px; padding: 5px 7px; }
-  .guest-max-info { font-size: 8px; }
-
-  /* Opt dot smaller */
-  .opt-dot { width: 12px; height: 12px; }
-  .opt-dot::after { width: 5px !important; height: 5px !important; }
-
-  /* Promo badge */
-  .promo-badge-tag { font-size: 7px; padding: 2px 5px; }
+  /* Scroll animasi nonaktif */
+  .scroll-anim {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 
 @media (orientation: landscape) and (max-height: 500px) {
