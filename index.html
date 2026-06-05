@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0a">
+<title>Paddarai Surf Lodge</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════ -->
+<nav>
+  <div class="logo-wrap" onclick="showPage('home')">
+    <img src="gambar/Paddarai Surf Lodge logo design 2.png" alt="Paddarai Logo">
+    <span class="logo-name">PADDARAI SURF LODGE</span>
+  </div>
+  <div class="nav-items">
+    <div class="nav-item">
+      <button class="nav-btn" onclick="showPage('home')" id="nav-home">Home</button>
+    </div>
+    <div class="nav-item">
+      <button class="nav-btn" onclick="toggleDropdown('dd-lodge')" id="nav-lodge">
+        The Lodge
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="nav-dropdown" id="dd-lodge">
+        <button class="nav-dd-item" onclick="showPage('about')">About Us</button>
+        <button class="nav-dd-item" onclick="showPage('accommodation')">Accommodation</button>
+        <button class="nav-dd-item" onclick="showPage('bar')">Bar &amp; Restaurant</button>
+        <button class="nav-dd-item" onclick="showPage('gallery')">Gallery</button>
+      </div>
+    </div>
+    <div class="nav-item">
+      <button class="nav-btn" onclick="showPage('surf')" id="nav-surf">Surf Breaks</button>
+    </div>
+    <div class="nav-item">
+      <button class="nav-btn" onclick="showPage('promo')" id="nav-promo">Promo</button>
+    </div>
+    <div class="nav-item">
+      <button class="nav-btn" onclick="showPage('contact')" id="nav-contact">Contact</button>
+    </div>
+    <div class="nav-item">
+      <button class="nav-btn" onclick="showPage('location')" id="nav-location">Location</button>
+    </div>
+    <button class="nav-book-btn" onclick="showPage('booking')">Book Now</button>
+  </div>
+  <button class="hamburger" onclick="toggleMob()" aria-label="Menu" id="hamburger-btn">
+    <svg id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+    <svg id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     MOBILE MENU
+═══════════════════════════════════════════ -->
+<div class="mob-menu" id="mob-menu">
+  <div class="mob-section">
+    <button class="mob-direct" onclick="showPage('home');closeMob()">Home</button>
+  </div>
+  <div class="mob-section">
+    <button class="mob-section-btn" onclick="toggleMobSub(this)">
+      The Lodge
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="mob-sub">
+      <button class="mob-sub-item" onclick="showPage('about');closeMob()">About Us</button>
+      <button class="mob-sub-item" onclick="showPage('accommodation');closeMob()">Accommodation</button>
+      <button class="mob-sub-item" onclick="showPage('bar');closeMob()">Bar &amp; Restaurant</button>
+      <button class="mob-sub-item" onclick="showPage('gallery');closeMob()">Gallery</button>
+    </div>
+  </div>
+  <div class="mob-section">
+    <button class="mob-direct" onclick="showPage('surf');closeMob()">Surf Breaks</button>
+  </div>
+  <div class="mob-section">
+    <button class="mob-direct" onclick="showPage('promo');closeMob()">Promo</button>
+  </div>
+  <div class="mob-section">
+    <button class="mob-direct" onclick="showPage('contact');closeMob()">Contact</button>
+  </div>
+  <div class="mob-section">
+    <button class="mob-direct" onclick="showPage('location');closeMob()">Location</button>
+  </div>
+  <button class="mob-book" onclick="showPage('booking');closeMob()">Book Now</button>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER TEMPLATE (injected into each page)
+═══════════════════════════════════════════ -->
+<template id="footer-tpl">
+  <footer>
+    <div class="ft-top">
+      <div class="ft-brand">
+        <div class="ft-brand-name">Paddarai Surf Lodge</div>
+        <div class="ft-brand-tag">Malakopa · South Pagai · Mentawai</div>
+        <div class="ft-brand-desc">Paddarai Surf Lodge is the perfect stay for surfers chasing world-class waves. Enjoy a comfortable stay, relaxing tropical vibes, and easy access to many incredible surf spots.</div>
+        <div class="ft-social-row">
+          <a class="ft-social-btn" href="https://www.instagram.com/paddaraisurflodge" target="_blank">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            Instagram
+          </a>
+          <a class="ft-social-btn" href="https://wa.me/6281374192584" target="_blank">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="ft-col-title">Navigate</div>
+        <div class="ft-links">
+          <button class="ft-link" onclick="showPage('home')">Home</button>
+          <button class="ft-link" onclick="showPage('about')">About Us</button>
+          <button class="ft-link" onclick="showPage('accommodation')">Accommodation</button>
+          <button class="ft-link" onclick="showPage('bar')">Bar &amp; Restaurant</button>
+          <button class="ft-link" onclick="showPage('surf')">Surf Breaks</button>
+          <button class="ft-link" onclick="showPage('gallery')">Gallery</button>
+          <button class="ft-link" onclick="showPage('promo')">Promo</button>
+          <button class="ft-link" onclick="showPage('location')">Location</button>
+          <button class="ft-link" onclick="showPage('location');setTimeout(()=>document.querySelector('.get-here').scrollIntoView({behavior:'smooth'}),50)">How to Get Here</button>
+          <button class="ft-link" onclick="showPage('booking')">Book Now →</button>
+        </div>
+      </div>
+      <div>
+        <div class="ft-col-title">Contact</div>
+        <div class="ft-contact-item">
+          <svg class="ft-contact-icon" viewBox="0 0 24 24" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <div>
+            <div class="ft-contact-label">WhatsApp</div>
+            <div class="ft-contact-val">+62 813-7419-2584</div>
+          </div>
+        </div>
+        <div class="ft-contact-item">
+          <svg class="ft-contact-icon" viewBox="0 0 24 24" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          <div>
+            <div class="ft-contact-label">Instagram</div>
+            <div class="ft-contact-val">@paddaraisurflodge</div>
+          </div>
+        </div>
+        <div class="ft-contact-item">
+          <svg class="ft-contact-icon" viewBox="0 0 24 24" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <div>
+            <div class="ft-contact-label">Email</div>
+            <div class="ft-contact-val">paddaraisurflodge@gmail.com</div>
+          </div>
+        </div>
+        <div class="ft-contact-item">
+          <svg class="ft-contact-icon" viewBox="0 0 24 24" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div>
+            <div class="ft-contact-label">Address</div>
+            <div class="ft-contact-val">Malakopa Village, South Pagai Island, Mentawai Islands, West Sumatra, Indonesia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ft-divider-row">
+      <div class="ft-dots">
+        <div class="ft-dot"></div>
+        <div class="ft-dot" style="opacity:0.6"></div>
+        <div class="ft-dot" style="opacity:0.35"></div>
+      </div>
+      <div class="ft-divider-line"></div>
+      <div class="ft-badge">South Pagai. Mentawai, Indonesia</div>
+    </div>
+    <div class="ft-bottom">
+      <div class="ft-copy">© 2026 Paddarai Surf Lodge. All rights reserved.</div>
+      <div class="ft-legal">
+        <button class="ft-legal-link">Privacy</button>
+        <button class="ft-legal-link">Terms</button>
+      </div>
+    </div>
+  </footer>
+</template>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: HOME
+═══════════════════════════════════════════ -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <video class="hero-bg-img" autoplay muted loop playsinline>
+    <source src="gambar/video 3.mp4" type="video/mp4">
+  </video>
+    <img src="gambar/Paddarai Surf Lodge logo design 2.png" class="hero-logo-img" alt="Logo">
+    <div class="hero-tagline">Paddarai Surf Lodge</div>
+    <div class="hero-sub">Malakopa · South Pagai · Mentawai · Indonesia</div>
+    <div class="hero-early-bird" onclick="showPage('promo')">
+      <span class="heb-dot"></span>
+      Early Bird - First 6 Guests: Save $20/person/night
+      <span class="heb-arrow">→</span>
+    </div>
+    <div class="hero-cta-wrap">
+      <button class="btn-primary" onclick="showPage('booking')">Book Your Stay</button>
+      <button class="btn-outline" onclick="showPage('accommodation')">Explore Rooms</button>
+    </div>
+    <div class="scroll-hint" style="position:absolute;bottom:clamp(16px,4vw,30px);left:50%;transform:translateX(-50%);z-index:2;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+      Scroll
+    </div>
+  </div>
+  <div class="about-strip scroll-anim">
+    <div>
+      <h2>You came to surf. We handle everything else.</h2>
+      <p>Paddarai Surf Lodge is a fully all-inclusive beachfront retreat built for surfers who want to focus on one thing — the waves. At $125 per person per night, everything is taken care of: your cottage, three daily meals, drinking water, tea, coffee, a local surf guide, daily boat trips, and transfers. No surprise fees, no logistics headaches. Just show up and explore the waves of North and South Pagai.</p>
+      <p>Wake up metres from Roxies, one of South Pagai's most consistent breaks. Be in the lineup before breakfast, surf until you're satisfied, come back to a hot meal, and do it all again. With Starlink WiFi, a private terrace, and easy access to seven world-class breaks including Macaronis, Thunders, and Greenbush — this is Mentawai done properly.</p>
+    </div>
+    <div class="about-img-grid">
+      <img src="gambar/Bar & Restourant.png" alt="Lodge" loading="lazy">
+      <img src="gambar/type 1 &2.png" alt="Mentawai" loading="lazy">
+      <img src="gambar/Terace.png" alt="Nature" loading="lazy">
+    </div>
+  </div>
+  <div id="footer-home"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: ABOUT
+═══════════════════════════════════════════ -->
+<div class="page" id="page-about">
+  <div class="page-content">
+    <div class="page-hero">
+      <img class="bg" src="gambar/Paddarai.jpeg" alt="">
+      <div class="page-hero-content">
+        <div class="page-hero-eyebrow">Paddarai Surf Lodge</div>
+        <h1>About Us</h1>
+        <div class="divider"></div>
+      </div>
+      <div class="scroll-hint" style="position:absolute;bottom:clamp(16px,4vw,30px);left:50%;transform:translateX(-50%);z-index:2;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+        Scroll
+      </div>
+    </div>
+    <div class="about-full scroll-anim">
+      <h2>Our Story</h2>
+      <p>Paddarai Surf Lodge is a family-owned and locally managed surf retreat, built in April 2026 and completed in October 2026. Located right on the beachfront in Malakopa, South Pagai Island, the lodge sits only a few meters from the famous Roxy's surf spot, giving surfers easy access to many of the best waves in the Mentawai Islands.</p>
+      <p>Designed with a simple tropical cottage concept, Paddarai Surf Lodge consists of three buildings: a cozy beachfront bar and two comfortable accommodation cottages. Our location was carefully chosen in the heart of several world-class surf spots, making every surf trip easy, convenient, and unforgettable.</p>
+      <h2>Our Crew Members</h2>
+      <p>All Paddarai crew members are local people who know the island, the waves, and the culture very well. We are dedicated to creating a warm and friendly atmosphere where every guest can feel at home, enjoy great surfing, and experience the true spirit of Mentawai hospitality.</p>
+      <h3 class="about-sub-title">Our Chef</h3>
+      <p class="about-sub-desc">Irvan Filsen is the owner of Paddarai Surf Lodge and also the in-house chef. He holds a Bachelor’s degree in Tourism and has experience working in kitchens and coffee shops across various restaurants and cafés in Yogyakarta. With that background and experience, he brings fresh, flavorful, and comforting meals for guests to enjoy after a full day of surfing.</p>
+      <h3 class="about-sub-title">Our Guide</h3>
+      <p class="about-sub-desc">Gomer Dwan is a local surf guide at Paddarai Surf Lodge with more than 10 years of surfing experience in the Mentawai Islands. He has also worked freelance as a surf guide for several surf camps around the Malakopa area. With his deep knowledge of the waves and local surf conditions, Gomer is always ready to help guests find the best waves based on the conditions and each surfer’s ability level. Friendly, experienced, and passionate about what he does, he is dedicated to making every trip more comfortable, enjoyable, and memorable.</p>
+      <h3 class="about-sub-title">Our Boat Captain</h3>
+      <p class="about-sub-desc">Juntei and Tono are two leading boat captains at Paddarai Surf Lodge. Both have more than 12 years of experience navigating the waters of the Mentawai Islands and have a deep understanding of sea conditions and weather patterns. As long-trusted captains by the people of Malakopa Village, they are known for their skill, calmness, and experience in handling various sea conditions, including when the weather is not favorable. With their deep local knowledge and extensive experience, they ensure that every trip is safe, comfortable, and smooth. When you are with Juntei and Tono, you can simply relax and enjoy the journey while they take you to the best surf spots and guide you throughout every trip.</p>
+      <h3 class="about-sub-title">And Other Crew</h3>
+      <p class="about-sub-desc">Behind every great surf trip is a team working quietly behind the scenes. Our crew also includes our dedicated housekeeping and support staff who ensure everything at the lodge runs smoothly every single day, from keeping your cottage clean and fresh to preparing the boat for the every session. Friendly, hardworking, and always ready to help, they are the backbone of Paddarai Surf Lodge. Though they may not be in the spotlight, their care and dedication are felt in every detail of your stay.</p>
+    </div>
+    <div id="footer-about"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: ACCOMMODATION
+═══════════════════════════════════════════ -->
+<div class="page" id="page-accommodation">
+  <div class="page-content">
+    <div class="page-hero">
+      <img class="bg" src="gambar/Paddarai.jpeg" alt="">
+      <div class="page-hero-content">
+        <div class="page-hero-eyebrow">Where You'll Stay</div>
+        <h1>Accommodation</h1>
+        <div class="divider"></div>
+      </div>
+      <div class="scroll-hint" style="position:absolute;bottom:clamp(16px,4vw,30px);left:50%;transform:translateX(-50%);z-index:2;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+        Scroll
+      </div>
+    </div>
+
+    <div class="section-intro scroll-anim">
+      <h2>All-Inclusive Packages</h2>
+      <p>Experience the best surfing in the Mentawai Islands with an all-inclusive package from Paddarai Surf Lodge. We've taken care of everything for you — from comfortable beachfront accommodation and daily meals to surf trips and warm local hospitality, so you can simply relax, ride the waves, and soak up the island vibes.</p>
+    </div>
+
+    <div class="room-section">
+      <!-- ROOM 1 -->
+      <div class="room-card scroll-anim">
+        <div class="room-img-wrap">
+          <div class="room-slider" id="slider-r1">
+            <div class="room-slider-track" id="track-r1">
+              <img src="gambar/type 1 &2.png" alt="Room 1 - View 1" loading="lazy">
+              <img src="gambar/room 1.jpeg" alt="Room 1 - View 2" loading="lazy">
+              <img src="gambar/Attic Lounge.png" alt="Room 1 - View 3" loading="lazy">
+              <img src="gambar/Terace.png" alt="Room 1 - View 4" loading="lazy">
+              <img src="gambar/toilet.png" alt="Room 1 - View 5" loading="lazy">
+            </div>
+            <button class="slider-btn prev" onclick="slideRoom('r1',-1)" aria-label="Previous">
+              <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="slider-btn next" onclick="slideRoom('r1',1)" aria-label="Next">
+              <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="slider-dots" id="dots-r1">
+              <button class="slider-dot active" onclick="goToSlide('r1',0)"></button>
+              <button class="slider-dot" onclick="goToSlide('r1',1)"></button>
+              <button class="slider-dot" onclick="goToSlide('r1',2)"></button>
+              <button class="slider-dot" onclick="goToSlide('r1',3)"></button>
+              <button class="slider-dot" onclick="goToSlide('r1',4)"></button>
+            </div>
+          </div>
+        </div>
+        <div class="room-body">
+          <div class="room-num">All-Inclusive Type 01</div>
+          <h3>Small Groups</h3>
+          <div class="room-price">From <span>$125</span> per person / night</div>
+          <p class="room-desc">Type 1 cottage is the perfect choice for small groups who want their own space without the hassle. The price is charged per person, with a minimum booking of 3 guests.</p>
+          <div class="room-specs">
+            <div class="room-spec"><div class="sv">$125</div><div class="sk">Per Person / Night</div></div>
+            <div class="room-spec"><div class="sv">Min 3</div><div class="sk">Guests</div></div>
+            <div class="room-spec"><div class="sv">Twin/Quad</div><div class="sk">Bed Config</div></div>
+          </div>
+          <div class="fac-grid">
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div><div><div class="fac-name">Private Cottage</div><div class="fac-detail">Your own space</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01M3.36 11.36a11 11 0 0117.28 0M6.75 13.91a7 7 0 0110.5 0"/></svg></div><div><div class="fac-name">Starlink WiFi</div><div class="fac-detail">High-speed satellite</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div><div><div class="fac-name">Ocean View</div><div class="fac-detail">Wake up to the sea</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9.59 4.59A2 2 0 1111 8H2m10.59 11.41A2 2 0 1014 16H2m15.73-8.27A2.5 2.5 0 1119.5 12H2"/></svg></div><div><div class="fac-name">Fan</div><div class="fac-detail">electric fan</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div><div class="fac-name">Terrace</div><div class="fac-detail">Private outdoor space</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/><rect x="8" y="6" width="8" height="4" rx="1"/></svg></div><div><div class="fac-name">Attic Lounge</div><div class="fac-detail">Your own private retreat</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div><div class="fac-name">Surfboard Rack</div><div class="fac-detail">Secure board storage</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 9v11a2 2 0 01-2 2H6a2 2 0 01-2-2V9"/><path d="M9 22V12h6v10"/><path d="M2 10.6L12 2l10 8.6"/></svg></div><div><div class="fac-name">Bathroom</div><div class="fac-detail">clean &amp; maintained</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg></div><div><div class="fac-name">Closet / Wardrobe</div><div class="fac-detail">Storage space</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 00-5 5v6h3.5"/><path d="M16 22v-7"/></svg></div><div><div class="fac-name">Breakfast, Lunch &amp; Dinner</div><div class="fac-detail">All meals included</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div><div><div class="fac-name">Drinks Included</div><div class="fac-detail">Water, tea, coffee &amp; coconut</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 20h20M5 20l-2-6h18l-2 6M6 14V9h12v5M12 3v6M9 9h6"/></svg></div><div><div class="fac-name">Transfer Included</div><div class="fac-detail">Lodge ↔ Sikakap</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 20h20M5 20l-2-6h18l-2 6M6 14V9h12v5M12 3v6M9 9h6"/></svg></div><div><div class="fac-name">2 Daily Boat Trip</div><div class="fac-detail">Morning and afternoon session</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div><div><div class="fac-name">Guide Included</div><div class="fac-detail">Local surf guide</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h12"/><path d="M16 16l2 2 4-4"/></svg></div><div><div class="fac-name">Daily Housekeeping</div><div class="fac-detail">Room cleaned every day</div></div></div>
+          </div>
+          <button class="btn-book" onclick="showPage('booking')">Book Now</button>
+        </div>
+      </div>
+
+      <!-- ROOM 2 -->
+      <div class="room-card scroll-anim" style="margin-bottom:0;">
+        <div class="room-img-wrap">
+          <div class="room-slider" id="slider-r2">
+            <div class="room-slider-track" id="track-r2">
+              <img src="gambar/type 1 &2.png" alt="Room 2 - View 1" loading="lazy">
+              <img src="gambar/room 2.jpeg" alt="Room 2 - View 2" loading="lazy">
+              <img src="gambar/Attic Lounge.png" alt="Room 2 - View 3" loading="lazy">
+              <img src="gambar/Terace.png" alt="Room 2 - View 4" loading="lazy">
+              <img src="gambar/toilet.png" alt="Room 2 - View 5" loading="lazy">
+            </div>
+            <button class="slider-btn prev" onclick="slideRoom('r2',-1)" aria-label="Previous">
+              <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="slider-btn next" onclick="slideRoom('r2',1)" aria-label="Next">
+              <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <div class="slider-dots" id="dots-r2">
+              <button class="slider-dot active" onclick="goToSlide('r2',0)"></button>
+              <button class="slider-dot" onclick="goToSlide('r2',1)"></button>
+              <button class="slider-dot" onclick="goToSlide('r2',2)"></button>
+              <button class="slider-dot" onclick="goToSlide('r2',3)"></button>
+              <button class="slider-dot" onclick="goToSlide('r2',4)"></button>
+            </div>
+          </div>
+        </div>
+        <div class="room-body">
+          <div class="room-num">All-Inclusive Type 02</div>
+          <h3>Ocean View Double</h3>
+          <div class="room-price">From <span>$125</span> per person / night</div>
+          <p class="room-desc">Type 2 cottage is the perfect choice for couples or two surfers who want to share unforgettable moments while enjoying a peaceful stay together, with a minimum booking of 2 guests.</p>
+          <div class="room-specs">
+            <div class="room-spec"><div class="sv">$125</div><div class="sk">Per Person / Night</div></div>
+            <div class="room-spec"><div class="sv">Min 2</div><div class="sk">Guests</div></div>
+            <div class="room-spec"><div class="sv">Double</div><div class="sk">Bed Config</div></div>
+          </div>
+          <div class="fac-grid">
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div><div><div class="fac-name">Private Cottage</div><div class="fac-detail">Your own space</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01M3.36 11.36a11 11 0 0117.28 0M6.75 13.91a7 7 0 0110.5 0"/></svg></div><div><div class="fac-name">Starlink WiFi</div><div class="fac-detail">High-speed satellite</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div><div><div class="fac-name">Ocean View</div><div class="fac-detail">Wake up to the sea</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9.59 4.59A2 2 0 1111 8H2m10.59 11.41A2 2 0 1014 16H2m15.73-8.27A2.5 2.5 0 1119.5 12H2"/></svg></div><div><div class="fac-name">Fan</div><div class="fac-detail">electric fan</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div><div class="fac-name">Terrace</div><div class="fac-detail">Private outdoor space</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/><rect x="8" y="6" width="8" height="4" rx="1"/></svg></div><div><div class="fac-name">Attic Lounge</div><div class="fac-detail">Your own private retreat</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div><div class="fac-name">Surfboard Rack</div><div class="fac-detail">Secure board storage</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 9v11a2 2 0 01-2 2H6a2 2 0 01-2-2V9"/><path d="M9 22V12h6v10"/><path d="M2 10.6L12 2l10 8.6"/></svg></div><div><div class="fac-name">Bathroom</div><div class="fac-detail">clean &amp; maintained</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg></div><div><div class="fac-name">Closet / Wardrobe</div><div class="fac-detail">Storage space</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 00-5 5v6h3.5"/><path d="M16 22v-7"/></svg></div><div><div class="fac-name">Breakfast, Lunch &amp; Dinner</div><div class="fac-detail">All meals included</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div><div><div class="fac-name">Drinks Included</div><div class="fac-detail">Water, tea, coffee &amp; coconut</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 20h20M5 20l-2-6h18l-2 6M6 14V9h12v5M12 3v6M9 9h6"/></svg></div><div><div class="fac-name">Transfer Included</div><div class="fac-detail">Lodge ↔ Sikakap</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 20h20M5 20l-2-6h18l-2 6M6 14V9h12v5M12 3v6M9 9h6"/></svg></div><div><div class="fac-name">2 Daily Boat Trip</div><div class="fac-detail">Morning and afternoon session</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div><div><div class="fac-name">Guide Included</div><div class="fac-detail">Local surf guide</div></div></div>
+            <div class="fac-item"><div class="fac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h12"/><path d="M16 16l2 2 4-4"/></svg></div><div><div class="fac-name">Daily Housekeeping</div><div class="fac-detail">Room cleaned every day</div></div></div>
+          </div>
+          <button class="btn-book" onclick="showPage('booking')">Book Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUR BOAT -->
+    <div class="our-boat-section scroll-anim">
+      <div class="our-boat-inner">
+        <div class="our-boat-img-wrap">
+          <img src="gambar/Boat.png" alt="Our Boat" loading="lazy" onerror="this.src='gambar/20240122_153913.jpg'">
+          <div class="our-boat-label">Our Boat</div>
+        </div>
+        <div class="our-boat-body">
+          <div class="our-boat-eyebrow">On the Water</div>
+          <h2>Our Boat</h2>
+          <p>At Paddarai Surf Lodge, we use a traditional local longboat powered by a 40HP engine - our main vessel for everything on the water. Every day, the boat takes guests out to the surf breaks, explores the waves around North and South Pagai, and handles transfers to and from the Mentawai Fast ferry pier in Sikakap.</p>
+          <p>With Juntei and Tono at the helm - both with over 12 years of experience navigating Mentawai waters - every trip is safe, smooth, and in good hands. For us, the boat is more than just transportation. It's how the adventure begins each morning or afternoon, and how you come home after a great day in the water.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer-accommodation"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: SURF / WAVES
+═══════════════════════════════════════════ -->
+<div class="page" id="page-surf">
+  <div class="page-content">
+    <div class="page-hero">
+      <img class="bg" src="gambar/roxies1.jpeg" alt="">
+      <div class="page-hero-content">
+        <div class="page-hero-eyebrow">North Pagai & South Pagai</div>
+        <h1>Surf Breaks</h1>
+        <div class="divider"></div>
+      </div>
+      <div class="scroll-hint" style="position:absolute;bottom:clamp(16px,4vw,30px);left:50%;transform:translateX(-50%);z-index:2;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+        Scroll
+      </div>
+    </div>
+    <div class="ws-page-content">
+      <div class="ws-intro scroll-anim">
+        <h2>Surf Breaks Map</h2>
+        <img src="gambar/surf breaks map.png" alt="Surf Breaks Map" class="ws-map-img">
+        <p>Paddarai Surf Lodge is located right in the middle between the surf breaks of North and South Pagai, making surf trips to various waves easier and more convenient.</p>
+      </div>
+      <div class="ws-list">
+        <div class="ws-item scroll-anim"><div class="ws-img-col"><img src="gambar/Roxies.jpeg" alt="Roxi's" loading="lazy"></div><div class="ws-info-col"><h3>Roxies</h3><p>Roxies is a fun and playful right-hand reef break— the closest wave to the lodge. The wave offers long open walls perfect for carving, top turns, and smooth performance surfing. On smaller swells it's a friendly wave for all levels, while bigger swells bring beautiful barrel sections with a clean, flowing rhythm. Many surfers describe it as "Macas in reverse" — a perfectly lined-up right that rewards both beginners looking to improve and experienced surfers chasing performance waves.</p><div class="ws-meta-row"><div class="ws-meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>South Pagai</div><div class="ws-meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20L12 4L22 20"/><line x1="6" y1="14" x2="18" y2="14"/></svg>0,47 miles</div></div></div></div>
+        <div class="ws-item scroll-anim"><div class="ws-img-col"><img src="gambar/rags left.jpeg" alt="Rag's Left" loading="lazy"></div><div class="ws-info-col"><h3>Rag's Left</h3><p>Rag’s Left is a powerful left-hand reef break located around 10 minutes from Paddarai Surf Lodge in the southern Mentawai area. Known for its long hollow barrels and fast walls, this wave offers an exciting ride for experienced surfers. On the right swell, Rag’s Left can produce long tubing sections followed by a more open wall perfect for powerful turns down the line. Breaking over a shallow coral reef, the wave becomes heavier and more challenging as the swell increases.</p><div class="ws-meta-row"><div class="ws-meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>South Pagai</div><div class="ws-meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20L12 4L22 20"/><line x1="6" y1="14" x2="18" y2="14"/></svg>4,89 miles</div></div></div></div>
+        <div class="ws-item scroll-anim"><div class="ws-img-col"><img src="gambar/rags right.jpeg" alt="Rag's Right" loading="lazy"></div><div class="ws-info-col"><h3>Rag's Right</h3><p>Rag’s Right is a fast and powerful right-hand reef break located around 12 minutes from Paddarai Surf Lodge. Known for its hollow barrels and clean racing sections, this wave offers some of the best tubing conditions in South Mentawai when the swell and tide line up. Breaking over a shallow coral reef, Rag’s Right is best suited for advanced surfers who are comfortable with fast, heavy waves and committed tube rides.</p><div class="ws-meta-row"><div class="ws-meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>South Pagai</div><div class="ws-meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20L12 4L22 20"/><line x1="6" y1="14" x2="18" y2="14"/></svg>5,80 miles</div></div></div></div>
+        <div class="ws-item scroll-anim"><div class="ws-img-col"><img src="gambar/Thunders.jpeg" alt="Thunders" loading="lazy"></div><div class="ws-info-col"><h3>Thunders</h3><p>Thunders is a powerful and consistent left-hand reef break located around 15 minutes from Paddarai Surf Lodge. Known for its heavy walls, bowl sections, and dependable swell, Thunders works well across different tides and conditions, making it one of the most reliable waves nearby. On smaller to medium swells, the wave offers fun and clean walls, while bigger swells bring faster and more challenging sections for experienced surfers. With multiple take-off spots and long workable rides.</p><div class="ws-meta-row"><div class="ws-meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>South Pagai</div><div class="ws-meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20L12 4L22 20"/><line x1="6" y1="14" x2="18" y2="14"/></svg>7,57 miles</div></div></div></div>
+        <div class="ws-item scroll-anim"><div class="ws-img-col"><img src="gambar/rednuht.jpeg" alt="Rednuht" loading="lazy"></div><div class="ws-info-col"><h3>Thunder Box</h3><p>Thunder Box is a heavy and hollow right-hand reef break located around 17 minutes from Paddarai Surf Lodge. Although the wave is relatively short, it is famous for its thick and powerful barrels that can run from take-off to finish. Thunder Box works best with the right swell direction and tide, and when the conditions line up, it delivers some of the most exciting tube rides in the area. Best suited for experienced surfers, this wave offers a fast, intense, and unforgettable session.</p><div class="ws-meta-row"><div class="ws-meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>South Pagai</div><div class="ws-meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20L12 4L22 20"/><line x1="6" y1="14" x2="18" y2="14"/></svg>9,12 miles</div></div></div></div>
+        <div class="ws-item scroll-anim"><div class="ws-img-col"><img src="gambar/greenbush.jpeg" alt="Greenbush" loading="lazy"></div><div class="ws-info-col"><h3>Greenbush</h3><p>Greenbush is a world-class left-hand reef break located around 20-30 minutes from Paddarai Surf Lodge in the southern Mentawai area. Famous for its thick, deep, and perfectly round barrels, Greenbush offers one of the most unforgettable tube rides in the Mentawais when the conditions line up. The wave breaks over a shallow coral reef and works best on higher tides with solid south swells. Fast, heavy, and extremely hollow, Greenbush is recommended only for advanced surfers who are comfortable in powerful barreling waves.</p><div class="ws-meta-row"><div class="ws-meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>North Pagai</div><div class="ws-meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20L12 4L22 20"/><line x1="6" y1="14" x2="18" y2="14"/></svg>12,31 miles</div></div></div></div>
+        <div class="ws-item scroll-anim"><div class="ws-img-col"><img src="gambar/Macaronis.jpeg" alt="Macaronis" loading="lazy"></div><div class="ws-info-col"><h3>Macaronis</h3><p>Macaronis is one of the most famous and enjoyable waves in the Mentawai Islands, located around 30-40 minutes from Paddarai Surf Lodge. This world-class left-hand reef break is known for its perfect shape, long playful walls, and incredibly consistent barrels. Macaronis works well on almost all tides and offers everything from smooth carving sections to fast tubing waves, making it a favorite for surfers from around the world. On smaller days it’s fun for intermediate surfers, while bigger swells turn the wave into a fast and powerful ride better suited for experienced surfers.</p><div class="ws-meta-row"><div class="ws-meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>North Pagai</div><div class="ws-meta-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20L12 4L22 20"/><line x1="6" y1="14" x2="18" y2="14"/></svg>18,10 miles</div></div></div></div>
+      </div>
+    </div>
+    <div id="footer-surf"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: BAR & RESTAURANT
+═══════════════════════════════════════════ -->
+<div class="page" id="page-bar">
+  <div class="page-content">
+    <div class="page-hero">
+      <img class="bg" src="gambar/Bar & Restourant.png" alt="">
+      <div class="page-hero-content">
+        <div class="page-hero-eyebrow">Food &amp; Drinks</div>
+        <h1>Bar &amp; Restaurant</h1>
+        <div class="divider"></div>
+      </div>
+      <div class="scroll-hint" style="position:absolute;bottom:clamp(16px,4vw,30px);left:50%;transform:translateX(-50%);z-index:2;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+        Scroll
+      </div>
+    </div>
+    <div class="bar-content scroll-anim">
+      <img src="gambar/Bar & Restourant.png" alt="Bar &amp; Restaurant Paddarai" loading="lazy">
+      <div>
+        <h2>Eat, Drink &amp; Relax</h2>
+        <p>Our beachfront bar and restaurant is the heart of Paddarai Surf Lodge — a relaxed, open-air spot where surfers gather to eat, unwind, and swap stories after a day on the water. Three meals a day are already included in your stay: a hearty breakfast before you paddle out, a proper lunch to refuel, and a satisfying dinner to end the day. We serve a mix of fresh local dishes and simple international favorites, all prepared daily using fresh ingredients. Drinking water, tea, coffee, and fresh young coconut are also included in your package — so you stay hydrated and refreshed throughout the day without any extra charge.</p>
+        <p>Craving something more after your session? The bar is open throughout the day for additional food, cold drinks, and alcoholic beverages like beer — available at an extra cost. Whether it's a cold Bintang watching the sunset or an early coffee before the morning surf, the bar is always there when you need it.</p>
+      </div>
+    </div>
+    <div id="footer-bar"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: GALLERY
+═══════════════════════════════════════════ -->
+<div class="page" id="page-gallery">
+  <div class="page-content">
+    <div class="page-hero">
+      <img class="bg" src="gambar/Thunders.jpeg" alt="">
+      <div class="page-hero-content">
+        <div class="page-hero-eyebrow">Visual Stories</div>
+        <h1>Gallery</h1>
+        <div class="divider"></div>
+      </div>
+      <div class="scroll-hint" style="position:absolute;bottom:clamp(16px,4vw,30px);left:50%;transform:translateX(-50%);z-index:2;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+        Scroll
+      </div>
+    </div>
+    <div class="gallery-page">
+      <div class="gallery-masonry scroll-anim">
+        <img src="gambar/20240122_153913.jpg" alt="Lodge" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="gambar/Roxies.jpeg" alt="Roxi's" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="gambar/IMG_20221013_011744_541.jpg" alt="Mentawai" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="gambar/rags left.jpeg" alt="Rags Left" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="gambar/Thunders.jpeg" alt="Nature" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="gambar/Thunders.jpeg" alt="Thunders" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="gambar/greenbush.jpeg" alt="Greenbush" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="gambar/Macaronis.jpeg" alt="Macaronis" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="gambar/rednuht.jpeg" alt="Rednuht" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="gambar/rags right.jpeg" alt="Rags Right" loading="lazy" onclick="openLightbox(this.src)">
+      </div>
+    </div>
+    <div id="footer-gallery"></div>
+  </div>
+</div>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">×</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: PROMO
+═══════════════════════════════════════════ -->
+<div class="page" id="page-promo">
+  <div class="page-content">
+    <div class="page-hero">
+      <img class="bg" src="gambar/Paddarai.jpeg" alt="">
+      <div class="page-hero-content">
+        <div class="page-hero-eyebrow">Limited Offer</div>
+        <h1>Special Promo</h1>
+        <div class="divider"></div>
+      </div>
+      <div class="scroll-hint" style="position:absolute;bottom:clamp(16px,4vw,30px);left:50%;transform:translateX(-50%);z-index:2;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+        Scroll
+      </div>
+    </div>
+    <div class="promo-page">
+      <div class="promo-page-card scroll-anim">
+        <div class="promo-page-img">
+          <img src="gambar/greenbush.jpeg" alt="Promo" loading="lazy">
+          <div class="promo-lmt">Limited Offer</div>
+        </div>
+        <div class="promo-page-body">
+          <div class="eyebrow">All-Inclusive 7-Night Package For the first 6 guests only</div>
+          <h3>Save $20 per night per person</h3>
+          <p>Book a 7-night all-inclusive stay and enjoy $20 off per night. This special offer is available for the first 6 guests who make a booking.</p>
+          <div class="promo-includes">
+            <div class="pi-title">What's Included</div>
+            <div class="pi-item">Daily breakfast, lunch &amp; dinner</div>
+            <div class="pi-item">Transfer Lodge ↔ Sikakap</div>
+            <div class="pi-item">2 Daily Boat Trip</div>
+            <div class="pi-item">Guide Included</div>
+            <div class="pi-item">Daily Housekeeping</div>
+          </div>
+          <div class="promo-price-tag">
+            <div class="save">You Save</div>
+            <div class="disc">$140 over 7 nights</div>
+          </div>
+          <div class="promo-validity">Valid for bookings with check-out before 30 April 2027 · the first 6 guests only</div>
+          <button class="btn-promo" onclick="showPage('booking')">Book Now</button>
+        </div>
+      </div>
+    </div>
+    <div id="footer-promo"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: CONTACT
+═══════════════════════════════════════════ -->
+<div class="page" id="page-contact">
+  <div class="page-content">
+    <div class="page-hero">
+      <img class="bg" src="gambar/Paddarai.jpeg" alt="">
+      <div class="page-hero-content">
+        <div class="page-hero-eyebrow">Get In Touch</div>
+        <h1>Contact Us</h1>
+        <div class="divider"></div>
+      </div>
+      <div class="scroll-hint" style="position:absolute;bottom:clamp(16px,4vw,30px);left:50%;transform:translateX(-50%);z-index:2;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+        Scroll
+      </div>
+    </div>
+    <div class="contact-page">
+      <div class="contact-inner scroll-anim">
+        <h2>We'd love to hear from you</h2>
+        <p>Have a question about availability, surf conditions, or what to pack? Reach us directly - we're always happy to chat.</p>
+        <a href="https://wa.me/6281374192584" target="_blank" class="c-item">
+          <div class="c-icon"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WA"></div>
+          <div><div class="c-lbl">WhatsApp</div><div class="c-val">+62-813-7419-2584</div></div>
+        </a>
+        <a href="https://www.instagram.com/paddaraisurflodge" target="_blank" class="c-item">
+          <div class="c-icon"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="IG"></div>
+          <div><div class="c-lbl">Instagram</div><div class="c-val">@paddaraisurflodge</div></div>
+        </a>
+        <a href="mailto:paddaraisurflodge@gmail.com" class="c-item">
+          <div class="c-icon"><img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Email"></div>
+          <div><div class="c-lbl">Email</div><div class="c-val">paddaraisurflodge@gmail.com</div></div>
+        </a>
+        <div class="contact-location-note">
+          <p>📍 For directions and how to reach us, visit our
+            <button onclick="showPage('location')">Location page</button>.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div id="footer-contact"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: LOCATION
+═══════════════════════════════════════════ -->
+<div class="page" id="page-location">
+  <div class="page-content">
+    <div class="page-hero">
+      <img class="bg" src="gambar/Paddarai.jpeg" alt="">
+      <div class="page-hero-content">
+        <div class="page-hero-eyebrow">Find Us</div>
+        <h1>Location</h1>
+        <div class="divider"></div>
+      </div>
+      <div class="scroll-hint" style="position:absolute;bottom:clamp(16px,4vw,30px);left:50%;transform:translateX(-50%);z-index:2;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+        Scroll
+      </div>
+    </div>
+    <div class="location-page scroll-anim">
+      <h2>Malakopa, South Pagai Island</h2>
+      <p class="sub">Mentawai Islands, West Sumatra, Indonesia</p>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3989.3!2d100.193892!3d-2.954758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMsKwNTcnMTcuMiJTIDEwMMKwMTEnMzguMCJF!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid"
+        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    
+    <div class="location-map-img-wrap scroll-anim">
+      <img src="gambar/our location.png" alt="Surf Breaks Map" class="ws-map-img">
+    </div>
+
+    <!-- HOW TO GET HERE -->
+    <div class="get-here">
+      <div class="get-here-header scroll-anim">
+        <h2>How to Get Here</h2>
+        <p>Reaching Paddarai Surf Lodge is part of the adventure. Follow these steps to get to our little corner of paradise in the Mentawai Islands.</p>
+      </div>
+      <div class="transport-grid">
+        <div class="transport-card scroll-anim">
+          <div class="transport-img">
+            <img src="gambar/pesawat.jpg" alt="Flight" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\'transport-img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><path d=\'M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z\'/></svg><span>Add photo here</span></div>'">
+            <div class="transport-step">Step 01</div>
+          </div>
+          <div class="transport-body">
+            <div class="transport-icon-row">
+              <div class="transport-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
+              <span class="transport-mode">By Plane</span>
+            </div>
+            <h3>Fly to Minangkabau International Airport</h3>
+            <p>Your journey begins with a flight to Minangkabau International Airport (PDG) in Padang, West Sumatra. Direct flights are available from Jakarta, Kuala Lumpur, and other major hubs.</p>
+            <div class="transport-duration">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Varies by origin
+            </div>
+          </div>
+        </div>
+        <div class="transport-card scroll-anim">
+          <div class="transport-img">
+            <img src="gambar/mentawai fast.webp" alt="Ferry" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\'transport-img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><path d=\'M2 20h20M5 20V10l7-6 7 6v10\'/></svg><span>Add photo here</span></div>'">
+            <div class="transport-step">Step 02</div>
+          </div>
+          <div class="transport-body">
+            <div class="transport-icon-row">
+              <div class="transport-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 20h20"/><path d="M18 9H6l-2 6h16l-2-6z"/><path d="M6 9V6h12v3"/><path d="M12 3v3"/></svg></div>
+              <span class="transport-mode">By Ferry</span>
+            </div>
+            <h3>Ferry from Padang to Sikakap</h3>
+            <p>After arriving in Padang, you’ll need to stay overnight before continuing your journey. The next day, from Muaro Harbour in Padang, take the Mentawai Fast ferry to East Sikakap Pier in Sikakap (North Pagai Island). Make sure you already have your Mentawai Surf Tax (mandatory surf tax for surfers) before departure.</p>
+            <div class="transport-duration">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              3–5 hours
+            </div>
+          </div>
+        </div>
+        <div class="transport-card scroll-anim">
+          <div class="transport-img">
+            <img src="gambar/Boat.png" alt="Road" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\'transport-img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><rect x=\'1\' y=\'3\' width=\'15\' height=\'13\'/><path d=\'M16 8h4l3 6v3h-7V8z\'/></svg><span>Add photo here</span></div>'">
+            <div class="transport-step">Step 03</div>
+          </div>
+          <div class="transport-body">
+            <div class="transport-icon-row">
+              <div class="transport-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17h18l-2-7H5L3 17z"/><path d="M5 17c0 1.1.9 2 2 2s2-.9 2-2"/><path d="M15 17c0 1.1.9 2 2 2s2-.9 2-2"/></svg></div>
+              <span class="transport-mode">By Boat</span>
+            </div>
+            <h3>Sikakap to Lodge</h3>
+            <p>After arriving at East Sikakap Pier, the Paddarai Surf Lodge team will be waiting to pick you up directly at the pier, so you won’t have to wait long. The journey to the lodge will then continue by Paddarai Surf Lodge’s longboat.</p>
+            <div class="transport-duration">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              ~30-40 Minutes
+            </div>
+          </div>
+        </div>
+        <div class="transport-card scroll-anim">
+          <div class="transport-img">
+            <img src="gambar/Paddarai.png" alt="Arrive" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\'transport-img-placeholder\'><svg viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'1.5\'><path d=\'M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z\'/></svg><span>Add photo here</span></div>'">
+            <div class="transport-step">Step 04</div>
+          </div>
+          <div class="transport-body">
+            <div class="transport-icon-row">
+              <div class="transport-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+              <span class="transport-mode">Arrival</span>
+            </div>
+            <h3>Welcome to Paddarai Surf Lodge</h3>
+            <p>You've made it!</p>
+            <div class="transport-duration">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              You're here - welcome!
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="get-here-cta">
+        <p>Need help planning your journey? We're happy to guide you.</p>
+        <a href="https://wa.me/6281374192584" target="_blank" class="btn-primary">Chat with Us on WhatsApp</a>
+      </div>
+    </div>
+
+    <div id="footer-location"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: BOOKING
+═══════════════════════════════════════════ -->
+<div class="page" id="page-booking">
+  <div class="page-content">
+    <div class="page-hero">
+      <img class="bg" src="gambar/rags left.jpeg" alt="">
+      <div class="page-hero-content">
+        <div class="page-hero-eyebrow">Reserve Your Spot</div>
+        <h1>Booking</h1>
+        <div class="divider"></div>
+      </div>
+      <div class="scroll-hint" style="position:absolute;bottom:clamp(16px,4vw,30px);left:50%;transform:translateX(-50%);z-index:2;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="6 9 12 15 18 9"/></svg>
+        Scroll
+      </div>
+    </div>
+    <div class="booking-wrap">
+      <div class="booking-grid">
+        <!-- LEFT: FORM -->
+        <div class="booking-left scroll-anim">
+          <h2>Make a Reservation</h2>
+          <p class="sub">Fill in your details and we'll confirm via WhatsApp/Email.</p>
+
+          <div class="bk-row-2">
+            <div class="bk-field"><label>Full Name</label><input type="text" id="bk-nama" placeholder="Your name" required></div>
+            <div class="bk-field"><label>Email</label><input type="email" id="bk-email" placeholder="your@email.com" required></div>
+          </div>
+
+          <div class="bk-field">
+            <label>Select Type Cottage</label>
+            <div class="room-options">
+              <div class="room-option selected" onclick="selectRoom(this,125,'Cottage 1','Per person / night',3,4)">
+                <div class="opt-dot"></div>
+                <div class="room-info">
+                  <div class="opt-name">Type 1 Cottage - All-inclusive</div>
+                  <div class="opt-sub">Per person / night · Minimum 3 guests</div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex-shrink:0;">
+                  <div class="room-price">$125</div>
+                  <button onclick="event.stopPropagation();viewRoomFromBooking('r1')" class="view-room-link">View Cottage →</button>
+                </div>
+              </div>
+              <div class="room-option" onclick="selectRoom(this,125,'Cottage 2','Per person / night',2,2)">
+                <div class="opt-dot"></div>
+                <div class="room-info">
+                  <div class="opt-name">Type 2 Cottage - All-inclusive</div>
+                  <div class="opt-sub">Per person / night · Minimum 2 guests</div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex-shrink:0;">
+                  <div class="room-price">$125</div>
+                  <button onclick="event.stopPropagation();viewRoomFromBooking('r2')" class="view-room-link">View Cottage →</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bk-field">
+            <label>Number of Guests</label>
+            <div class="guest-counter">
+              <button class="guest-btn" id="guest-minus" onclick="changeGuests(-1)" type="button" disabled>−</button>
+              <div class="guest-display" id="guest-display">1 Guest</div>
+              <button class="guest-btn" id="guest-plus" onclick="changeGuests(1)" type="button">+</button>
+            </div>
+            <div class="guest-max-info" id="guest-max-info">Flexible occupancy for Cottage Type 1</div>
+          </div>
+
+          <div class="bk-field">
+            <label>Promo</label>
+            <div class="promo-options">
+              <div class="promo-option selected" onclick="selectPromo(this,0,'No Promo')">
+                <div class="opt-dot"></div>
+                <div class="promo-detail"><div class="opt-name">No Promo</div><div class="opt-sub">Standard rate applies</div></div>
+              </div>
+              <div class="promo-option promo-disabled" id="promo-surf-pkg" onclick="selectPromo(this,20,'7 Nights Surf Package — Save $20/night')">
+                <div class="opt-dot"></div>
+                <div class="promo-detail"><div class="opt-name">All-Inclusive 7-Night Package For the first 6 guests only</div><div class="opt-sub">Daily breakfast, lunch & dinner, Daily Housekeeping, 2 Daily Boat Trip, Guide Included &amp; Transfer Lodge ↔ Sikakap</div></div>
+                <div class="promo-badge-tag">-$20/night</div>
+              </div>
+            </div>
+            <p id="promo-msg">Select check-in &amp; check-out dates to see promo eligibility.</p>
+          </div>
+
+          <!-- DATE PICKERS -->
+          <div class="bk-date-row">
+            <div class="bk-field">
+              <label>Check In</label>
+              <div class="date-picker-wrap" id="dp-in-wrap">
+                <button type="button" class="date-display-btn" id="dp-in-btn" onclick="toggleCal('in')">
+                  <span id="dp-in-display" class="placeholder">Select</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </button>
+                <div class="cal-popup" id="cal-in">
+                  <div class="cal-header">
+                    <button class="cal-nav-btn" onclick="calNav('in',-1)" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
+                    <div class="cal-month-label" id="cal-in-label"></div>
+                    <button class="cal-nav-btn" onclick="calNav('in',1)" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+                  </div>
+                  <div class="cal-grid" id="cal-in-grid"></div>
+                  <div class="cal-legend">
+                    <div class="cal-leg-item"><div class="cal-leg-swatch cal-leg-avail"></div>Available</div>
+                    <div class="cal-leg-item"><div class="cal-leg-swatch cal-leg-unavail"></div>Not available</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bk-field">
+              <label>Check Out</label>
+              <div class="date-picker-wrap" id="dp-out-wrap">
+                <button type="button" class="date-display-btn" id="dp-out-btn" onclick="toggleCal('out')">
+                  <span id="dp-out-display" class="placeholder">Select</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </button>
+                <div class="cal-popup" id="cal-out">
+                  <div class="cal-header">
+                    <button class="cal-nav-btn" onclick="calNav('out',-1)" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
+                    <div class="cal-month-label" id="cal-out-label"></div>
+                    <button class="cal-nav-btn" onclick="calNav('out',1)" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+                  </div>
+                  <div class="cal-grid" id="cal-out-grid"></div>
+                  <div class="cal-legend">
+                    <div class="cal-leg-item"><div class="cal-leg-swatch cal-leg-avail"></div>Available</div>
+                    <div class="cal-leg-item"><div class="cal-leg-swatch cal-leg-unavail"></div>Not available</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="bk-in">
+          <input type="hidden" id="bk-out">
+
+          <div class="bk-field">
+            <label>Currency</label>
+            <select id="bk-currency" onchange="bkUpdateSummary()">
+              <option value="USD">USD — US Dollar</option>
+              <option value="IDR">IDR — Indonesian Rupiah</option>
+              <option value="EUR">EUR — Euro</option>
+              <option value="GBP">GBP — British Pound</option>
+              <option value="AUD">AUD — Australian Dollar</option>
+              <option value="SGD">SGD — Singapore Dollar</option>
+              <option value="JPY">JPY — Japanese Yen</option>
+              <option value="CAD">CAD — Canadian Dollar</option>
+              <option value="MYR">MYR — Malaysian Ringgit</option>
+              <option value="THB">THB — Thai Baht</option>
+            </select>
+          </div>
+
+          <div class="bk-field">
+            <label>Additional Notes</label>
+            <textarea id="bk-pesan" placeholder="Special requests, surf experience level..." rows="4" style="resize:vertical;"></textarea>
+          </div>
+        </div>
+
+        <!-- RIGHT: SUMMARY -->
+        <div class="booking-summary">
+          <div class="sum-head">Booking Summary</div>
+          <div class="sum-rows">
+            <div class="sum-row"><span>Cottage</span><span id="sum-room">Cottage 1</span></div>
+            <div class="sum-row"><span>Guests</span><span id="sum-guests">1 Guest</span></div>
+            <div class="sum-row"><span>Check In</span><span id="sum-in">—</span></div>
+            <div class="sum-row"><span>Check Out</span><span id="sum-out">—</span></div>
+            <div class="sum-row"><span>Duration</span><span id="sum-nights">—</span></div>
+            <div class="sum-row"><span>Rate</span><span id="sum-rate">—</span></div>
+            <div class="sum-row"><span>Promo</span><span id="sum-promo">None</span></div>
+            <div class="sum-row total"><span>Total</span><span id="sum-total">—</span></div>
+          </div>
+          <button class="bk-submit" onclick="bkSendWAAnimated(event)" style="position:relative;overflow:hidden;transition:transform .15s;">Send via WhatsApp →</button>
+          <button class="bk-submit bk-submit-email" onclick="bkSendEmailAnimated(event)" style="margin-top:8px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.3);position:relative;overflow:hidden;transition:background .3s,transform .15s,box-shadow .3s;">Send via Email →</button>
+        </div>
+      </div>
+    </div>
+    <div id="footer-booking"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: ADMIN
+═══════════════════════════════════════════ -->
+<div class="page" id="page-admin">
+  <div class="page-content" style="min-height:calc(100svh - clamp(52px,8vw,64px));">
+    <div class="admin-login" id="admin-login-screen">
+      <div class="admin-login-card">
+        <h2>Admin Portal</h2>
+        <p>Paddarai Surf Lodge — Staff Access</p>
+        <div class="admin-field"><label>Username</label><input type="text" id="admin-user" placeholder="admin"></div>
+        <div class="admin-field"><label>Password</label><input type="password" id="admin-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')adminLogin()"></div>
+        <button class="btn-admin-login" onclick="adminLogin()">Sign In</button>
+        <div class="admin-err" id="admin-err">Incorrect username or password.</div>
+      </div>
+    </div>
+    <div class="admin-dash" id="admin-dashboard">
+      <div class="admin-topbar">
+        <div>
+          <h2>Dashboard</h2>
+          <p style="color:var(--text-muted);font-size:clamp(11px,2vw,13px);margin-top:4px;">Paddarai Surf Lodge — Booking Overview</p>
+        </div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <button class="admin-action-btn" onclick="adminAddSample()">+ Add Sample</button>
+          <button class="admin-action-btn" onclick="adminExport()">Export CSV</button>
+          <button class="admin-logout" onclick="adminLogout()">Sign Out</button>
+        </div>
+      </div>
+      <div class="admin-stats" id="admin-stats-row">
+        <div class="stat-card"><div class="s-num" id="stat-total">0</div><div class="s-lbl">Total Bookings</div></div>
+        <div class="stat-card"><div class="s-num" id="stat-new">0</div><div class="s-lbl">New / Pending</div></div>
+        <div class="stat-card"><div class="s-num" id="stat-confirmed">0</div><div class="s-lbl">Confirmed</div></div>
+        <div class="stat-card"><div class="s-num" id="stat-revenue">$0</div><div class="s-lbl">Est. Revenue</div><div class="s-sub">Confirmed only</div></div>
+        <div class="stat-card"><div class="s-num" id="stat-guests">0</div><div class="s-lbl">Total Guests</div></div>
+        <div class="stat-card"><div class="s-num" id="stat-nights">0</div><div class="s-lbl">Total Nights</div></div>
+      </div>
+      <div style="background:#fff;border:1px solid var(--mid-gray);border-radius:2px;padding:clamp(16px,3vw,24px);margin-bottom:clamp(20px,4vw,36px);">
+        <div class="admin-section-title" style="margin-bottom:20px;">Cottage Popularity</div>
+        <div class="bar-chart" id="room-bar-chart">
+          <div class="bar-row"><span class="bar-label">Cottage 1</span><div class="bar-track"><div class="bar-fill" id="bar-r1" style="width:0%"><span></span></div></div></div>
+          <div class="bar-row"><span class="bar-label">Cottage 2</span><div class="bar-track"><div class="bar-fill" id="bar-r2" style="width:0%"><span></span></div></div></div>
+        </div>
+      </div>
+      <div class="admin-section-title">All Bookings</div>
+      <div class="admin-actions" style="margin-bottom:16px;">
+        <button class="admin-action-btn active" id="filter-all" onclick="adminFilter('all')">All</button>
+        <button class="admin-action-btn" id="filter-new" onclick="adminFilter('new')">New</button>
+        <button class="admin-action-btn" id="filter-confirmed" onclick="adminFilter('confirmed')">Confirmed</button>
+        <button class="admin-action-btn" id="filter-cancelled" onclick="adminFilter('cancelled')">Cancelled</button>
+      </div>
+      <div class="admin-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th><th>Name</th><th>Cottage</th><th>Check In</th><th>Check Out</th>
+              <th>Nights</th><th>Guests</th><th>Total (USD)</th><th>Promo</th><th>Status</th><th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="bookings-tbody"></tbody>
+        </table>
+        <div class="empty-state" id="empty-state" style="display:none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <p>No bookings yet. Click "+ Add Sample" to see how it looks.</p>
+        </div>
+      </div>
+      <footer style="margin-top:20px;background:#0a0a0a;padding:16px max(4%, env(safe-area-inset-left));display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+        <span style="font-size:11px;color:rgba(255,255,255,0.22);">© 2026 Paddarai Surf Lodge — Admin Portal</span>
+        <span style="font-size:11px;color:rgba(255,255,255,0.18);">Data stored locally in browser</span>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════════ -->
+<script src="script.js"></script>
+
+</body>
+</html>
