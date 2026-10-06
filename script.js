@@ -192,8 +192,10 @@ function addSwipe(sliderId) {
 // Init both room sliders
 initSlider('r1', 5);
 initSlider('r2', 5);
+initSlider('r3', 5);
 addSwipe('r1');
 addSwipe('r2');
+addSwipe('r3');
 
 /* ─────────────────────────────────────────
    FRIDAY-ONLY CALENDAR PICKER
@@ -489,6 +491,7 @@ function selectRoom(el, priceUSD, name, sub, minGuests, maxGuests) {
   if (bkGuests < bkMinGuests) bkGuests = bkMinGuests;
   if (bkGuests > bkMaxGuests) bkGuests = bkMaxGuests;
   updateGuestUI();
+  bkCheckPromoEligibility();
 }
 
 /* -- Promo selection -- */
@@ -809,10 +812,11 @@ function adminRender() {
   document.getElementById('stat-guests').textContent    = adminBookings.reduce((s, b) => s + (b.guests || 0), 0);
   document.getElementById('stat-nights').textContent    = adminBookings.reduce((s, b) => s + (b.nights || 0), 0);
 
-  // Room popularity bars
+    // Room popularity bars
   const r1   = adminBookings.filter(b => b.room && b.room.includes('Cottage 1')).length;
   const r2   = adminBookings.filter(b => b.room && b.room.includes('Cottage 2')).length;
-  const maxR = Math.max(r1, r2, 1);
+  const r3   = adminBookings.filter(b => b.room && b.room.includes('Cottage 3')).length;
+  const maxR = Math.max(r1, r2, r3, 1);
   const setBar = (id, count) => {
     const el = document.getElementById(id);
     if (el) {
@@ -822,6 +826,7 @@ function adminRender() {
   };
   setBar('bar-r1', r1);
   setBar('bar-r2', r2);
+  setBar('bar-r3', r3);
 
   // Table rows
   const tbody      = document.getElementById('bookings-tbody');
